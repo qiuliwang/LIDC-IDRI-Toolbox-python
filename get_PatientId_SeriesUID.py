@@ -42,6 +42,8 @@ for metadata in metadatas:
             ctdata.append(metadata[9])
             CTList.append(ctdata)
     sign += 1
+
 print(len(CTList))
 
-csvTools.writeCSV('PatientId_SeriesUID.csv', CTList)
+# csvTools.writeCSV('PatientId_SeriesUID.csv', CTList)
+

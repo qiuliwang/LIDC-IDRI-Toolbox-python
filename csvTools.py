@@ -4,11 +4,17 @@ evaluation script
 '''
 
 import csv
+import platform
 
 def writeCSV(filename, lines):
-    with open(filename, "w", newline='') as f:
-        csvwriter = csv.writer(f)
-        csvwriter.writerows(lines)
+    if 'Darwin' in platform.system():
+        with open(filename, "wb") as f:
+            csvwriter = csv.writer(f)
+            csvwriter.writerows(lines)
+    else:
+        with open(filename, "b", newline='') as f:
+            csvwriter = csv.writer(f)
+            csvwriter.writerows(lines)
 
 def readCSV(filename):
     lines = []
