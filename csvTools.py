@@ -12,7 +12,7 @@ def writeCSV(filename, lines):
             csvwriter = csv.writer(f)
             csvwriter.writerows(lines)
     else:
-        with open(filename, "b", newline='') as f:
+        with open(filename, "w", newline='') as f:
             csvwriter = csv.writer(f)
             csvwriter.writerows(lines)
 
