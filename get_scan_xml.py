@@ -3,6 +3,7 @@ Created by Wang Qiu Li
 6/28/2018
 
 get xml in scans
+analysis xml and save characteristic to csv file
 '''
 
 import os
