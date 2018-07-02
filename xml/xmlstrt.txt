@@ -18,6 +18,15 @@ readingSession
      unblindedReadNodule
          noduleID
          characteristics
+            <subtlety>5</subtlety>
+            <internalStructure>1</internalStructure>
+            <calcification>6</calcification>
+            <sphericity>3</sphericity>
+            <margin>3</margin>
+            <lobulation>3</lobulation>
+            <spiculation>4</spiculation>
+            <texture>5</texture>
+            <malignancy>5</malignancy>
          roi
          roi
          roi
