@@ -24,6 +24,16 @@ def caseid_to_scanid(caseid):
         returnstr = str(caseid)
     return 'LIDC-IDRI-' + returnstr
 
+def getAve(numlist):
+    ave = 0
+    for num in numlist:
+        ave += int(num)
+    if len(numlist) == 0:
+        ave = 0
+    else:
+        ave = ave / len(numlist)
+    return ave
+
 
 nodule_chara = csvTools.readCSV(csvdir + 'nodule_chara_list.csv')
 # print(len(nodule_chara))
@@ -57,7 +67,24 @@ for item in list3:
             case_chara_id.append(cach)
 
     
-    
+            # <subtlety>5</subtlety>
+            # <internalStructure>1</internalStructure>
+            # <calcification>6</calcification>
+            # <sphericity>3</sphericity>
+            # <margin>3</margin>
+            # <lobulation>3</lobulation>
+            # <spiculation>4</spiculation>
+            # <texture>5</texture>
+            # <malignancy>5</malignancy>
+
+    store_subtlety = []
+    store_internalStructure = []
+    store_calcification = []
+    store_sphericity = []
+    store_margin = []
+    store_lobulation = []
+    store_spiculation = []
+    store_texture = []
     store_malignancy = []
 
     for ld in ldlist:
@@ -66,16 +93,34 @@ for item in list3:
         for one_case_chara in case_chara_id:
             if ld in one_case_chara:
                 print(one_case_chara)
+                store_subtlety.append(one_case_chara[2])
+                store_internalStructure.append(one_case_chara[3])
+                store_calcification.append(one_case_chara[4])
+                store_sphericity.append(one_case_chara[5])
+                store_margin.append(one_case_chara[6])
+                store_lobulation.append(one_case_chara[7])
+                store_spiculation.append(one_case_chara[8])
+                store_texture.append(one_case_chara[9])
                 store_malignancy.append(one_case_chara[10])
-    print(len(store_malignancy))
-    ave = 0
-    for num in store_malignancy:
-        ave += int(num)
-    if len(store_malignancy) == 0:
-        ave = 0
-    else:
-        ave = ave / len(store_malignancy)
-    print(ave)
-    item.append(ave)
-    print(len(item))
-# csvTools.writeCSV('malignancy.csv', list3)
+
+    subtlety_ave = getAve(store_subtlety)
+    internalStructure_ave = getAve(store_internalStructure)
+    calcification_ave = getAve(store_calcification)
+    sphericity_ave = getAve(store_sphericity)
+    margin_ave = getAve(store_margin)
+    lobulation_ave = getAve(store_lobulation)
+    spiculation_ave = getAve(store_spiculation)
+    texture_ave = getAve(store_texture)
+    malignancy_ave = getAve(store_malignancy)
+
+    item.append(subtlety_ave)
+    item.append(internalStructure_ave)
+    item.append(calcification_ave)
+    item.append(sphericity_ave)
+    item.append(margin_ave)
+    item.append(lobulation_ave)
+    item.append(spiculation_ave)
+    item.append(texture_ave)
+    item.append(malignancy_ave)
+
+csvTools.writeCSV('malignancy.csv', list3)
