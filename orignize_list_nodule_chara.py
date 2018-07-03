@@ -22,7 +22,7 @@ def caseid_to_scanid(caseid):
         returnstr = '0' + str(caseid)
     else:
         returnstr = str(caseid)
-    return returnstr
+    return 'LIDC-IDRI-' + returnstr
 
 
 nodule_chara = csvTools.readCSV(csvdir + 'nodule_chara_list.csv')
@@ -35,7 +35,7 @@ list3 = list3[1:len(list3)]
 # LIDC-IDRI-0001,Nodule 001,5,1,6,3,3,3,4,5,5
 # 1,1,3000566,1,6459.75,23.107,317,367,43,,IL057_127364,Nodule 001,MI014_12127,0,,,
 
-for item in list3[:6]:
+for item in list3:
     id = item[0]
     print('=====')
     print(id)
@@ -45,7 +45,37 @@ for item in list3[:6]:
 
     ldlist = []
     for ids in item[10:14]:
+        item.append(ids)
         # print(ids)
         if ids != '':
             ldlist.append(ids)
-    print(len(ldlist))
+
+    # nodule_chara that contain case
+    case_chara_id = []
+    for cach in nodule_chara:
+        if cach[0] == case:
+            case_chara_id.append(cach)
+
+    
+    
+    store_malignancy = []
+
+    for ld in ldlist:
+        print('nodule id ',ld)
+
+        for one_case_chara in case_chara_id:
+            if ld in one_case_chara:
+                print(one_case_chara)
+                store_malignancy.append(one_case_chara[10])
+    print(len(store_malignancy))
+    ave = 0
+    for num in store_malignancy:
+        ave += int(num)
+    if len(store_malignancy) == 0:
+        ave = 0
+    else:
+        ave = ave / len(store_malignancy)
+    print(ave)
+    item.append(ave)
+    print(len(item))
+# csvTools.writeCSV('malignancy.csv', list3)
