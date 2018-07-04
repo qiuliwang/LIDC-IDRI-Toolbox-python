@@ -61,7 +61,7 @@ def caseid_to_scanid(caseid):
         returnstr = str(caseid)
     return 'LIDC-IDRI-' + returnstr
 
-for onenodule in noduleinfo[:6]:
+for onenodule in noduleinfo:
     scanid = onenodule[1]
     scanid = caseid_to_scanid(int(scanid))
     print(scanid)
@@ -102,5 +102,10 @@ for onenodule in noduleinfo[:6]:
         # scipy.misc.imsave(str(tempsign) + '.jpeg', cutpix)
         tempsign += 1
         cut_img.append(cutpix)
-    #print(resdir + onenodule[0] + '.npy')
-    np.save(resdir2 + onenodule[0]  + '.npy', cut_img)
+    # print(onenodule)
+    if float(onenodule[29]) >= 3.5:
+        # print(resdir2 + onenodule[0] + '_high' + '.npy')
+        np.save(resdir2 + onenodule[0] + '_high' + '.npy', cut_img)
+    elif float(onenodule[29]) < 2.5:
+        # print(resdir2 + onenodule[0] + '_low' + '.npy')
+        np.save(resdir2 + onenodule[0] + '_low' + '.npy', cut_img)
