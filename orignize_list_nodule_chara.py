@@ -45,7 +45,12 @@ list3 = list3[1:len(list3)]
 # LIDC-IDRI-0001,Nodule 001,5,1,6,3,3,3,4,5,5
 # 1,1,3000566,1,6459.75,23.107,317,367,43,,IL057_127364,Nodule 001,MI014_12127,0,,,
 
+count = 0
+sign = 0
 for item in list3:
+
+    sign = 0
+
     id = item[0]
     print('=====')
     print(id)
@@ -59,6 +64,10 @@ for item in list3:
         # print(ids)
         if ids != '':
             ldlist.append(ids)
+        
+    if len(ldlist) != 4:
+        list3.remove(item)
+        continue
 
     # nodule_chara that contain case
     case_chara_id = []
@@ -92,7 +101,6 @@ for item in list3:
 
         for one_case_chara in case_chara_id:
             if ld in one_case_chara:
-                print(one_case_chara)
                 store_subtlety.append(one_case_chara[2])
                 store_internalStructure.append(one_case_chara[3])
                 store_calcification.append(one_case_chara[4])
@@ -102,6 +110,8 @@ for item in list3:
                 store_spiculation.append(one_case_chara[8])
                 store_texture.append(one_case_chara[9])
                 store_malignancy.append(one_case_chara[10])
+                # if one_case_chara[10] == '3':
+                #     sign = 1
 
     subtlety_ave = getAve(store_subtlety)
     internalStructure_ave = getAve(store_internalStructure)
@@ -122,5 +132,9 @@ for item in list3:
     item.append(spiculation_ave)
     item.append(texture_ave)
     item.append(malignancy_ave)
+    if sign == 1:
+        count += 1
 
+print('count ', count)
+print('len ', len(list3))
 csvTools.writeCSV('malignancy.csv', list3)
