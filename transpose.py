@@ -18,7 +18,9 @@ def angle_transpose(file,degree,flag_string):
      @param degree: how many degree will the image be transposed,90,180,270 are OK
      @flag_string:  which tag will be added to the filename after transposed
     '''
-    array = np.load(file)
+    array = np.load(file)       
+    array = array.transpose(2,1,0)
+
     newarr = np.zeros(array.shape,dtype=np.float32)
     for depth in range(array.shape[0]):
         jpg = array[depth]
@@ -31,17 +33,21 @@ def angle_transpose(file,degree,flag_string):
     print(newarr.shape)
     np.save(file.replace(".npy",flag_string+".npy"),newarr)
 
-filelist = os.listdir(datadir)
+x = np.load('1_high.npy')
+print(x.shape)
+angle_transpose('1_high.npy', 90, '_leftright')
 
-errfile = []
-for onefile in filelist:
-    print(datadir + onefile)
-    try:
-        angle_transpose(datadir + onefile,90,"_leftright")
-        angle_transpose(datadir + onefile, 180, "_updown")
-        angle_transpose(datadir + onefile, 270, "_diagonal")
-    except BaseException:
-        print(onefile)
-        errfile.append(onefile)
+# filelist = os.listdir(datadir)
 
-csvTools.writeTXT('errfile.txt', errfile)
+# errfile = []
+# for onefile in filelist:
+#     print(datadir + onefile)
+#     try:
+#         angle_transpose(datadir + onefile,90,"_leftright")
+#         angle_transpose(datadir + onefile, 180, "_updown")
+#         angle_transpose(datadir + onefile, 270, "_diagonal")
+#     except BaseException:
+#         print(onefile)
+#         errfile.append(onefile)
+
+# csvTools.writeTXT('errfile.txt', errfile)
