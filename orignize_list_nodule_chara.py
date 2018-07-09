@@ -26,6 +26,8 @@ def caseid_to_scanid(caseid):
 
 def getAve(numlist):
     ave = 0
+    if len(numlist) != 4:
+        print(numlist)
     for num in numlist:
         ave += int(num)
     if len(numlist) == 0:
@@ -47,28 +49,60 @@ list3 = list3[1:len(list3)]
 
 count = 0
 sign = 0
+
+list3_2 = []
 for item in list3:
 
-    sign = 0
-
     id = item[0]
-    print('=====')
-    print(id)
+    # print('=====')
+    # print(id)
     case = item[1]
     case = caseid_to_scanid(int(case))
-    print(case)
+    # print(case)
 
     ldlist = []
     for ids in item[10:14]:
         item.append(ids)
         # print(ids)
-        if ids != '':
-            ldlist.append(ids)
+        if str(ids) != '':
+            ldlist.append(str(ids))
         
-    if len(ldlist) != 4:
-        list3.remove(item)
-        continue
+    if len(ldlist) == 4:
+        list3_2.append(item)
 
+for item in list3_2:
+
+    sign = 0
+
+    id = item[0]
+    # print(id)
+    case = item[1]
+    print("=================")
+    print(case)
+    case = caseid_to_scanid(int(case))        
+    print(case)
+
+    # print(case)
+
+    ldlist = []
+    for ids in item[10:14]:
+        # print(ids)
+        # item.append(ids)
+        # print(ids)
+        if str(ids) != '':
+            print(ids)
+            ldlist.append(ids)
+    
+    if len(ldlist) != 4:
+        print('=====')
+        print(case)
+        print(len(ldlist))
+        for ids in item[10:14]:
+        # item.append(ids)
+        # print(ids)
+            if str(ids) != '':
+                print(ids)
+    
     # nodule_chara that contain case
     case_chara_id = []
     for cach in nodule_chara:
@@ -97,10 +131,17 @@ for item in list3:
     store_malignancy = []
 
     for ld in ldlist:
-        print('nodule id ',ld)
+        print(ld)
+    print("===")
+    for ld in ldlist:
+        # print('nodule id ',ld)
+        print(ld)
 
         for one_case_chara in case_chara_id:
-            if ld in one_case_chara:
+            # print(type(one_case_chara))
+            if ld == one_case_chara[1]:
+                print('find', one_case_chara)
+                print('!!!!!!!!!!!!!!!!! ',one_case_chara[2])
                 store_subtlety.append(one_case_chara[2])
                 store_internalStructure.append(one_case_chara[3])
                 store_calcification.append(one_case_chara[4])
@@ -112,6 +153,7 @@ for item in list3:
                 store_malignancy.append(one_case_chara[10])
                 # if one_case_chara[10] == '3':
                 #     sign = 1
+                break
 
     subtlety_ave = getAve(store_subtlety)
     internalStructure_ave = getAve(store_internalStructure)
@@ -134,7 +176,8 @@ for item in list3:
     item.append(malignancy_ave)
     if sign == 1:
         count += 1
+    # csvTools.writeCSV('malignancy.csv', item)
 
-print('count ', count)
-print('len ', len(list3))
-csvTools.writeCSV('malignancy.csv', list3)
+# print('count ', count)
+# print('len ', len(list3))
+csvTools.writeCSV('malignancy.csv', list3_2)
