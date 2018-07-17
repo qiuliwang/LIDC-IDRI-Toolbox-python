@@ -9,7 +9,7 @@ import numpy as np
 import os
 from PIL import Image
 import csvTools
-datadir = '/data0/LIDC/NNPY/'
+datadir = '404026/'
 testdir = '/home/wangqiuli/Documents/test/'
 
 def angle_transpose(file,degree,flag_string):
@@ -18,8 +18,8 @@ def angle_transpose(file,degree,flag_string):
      @param degree: how many degree will the image be transposed,90,180,270 are OK
      @flag_string:  which tag will be added to the filename after transposed
     '''
-    array = np.load(file)       
-    array = array.transpose(2,1,0)
+    array = np.load(file)
+    array = array.transpose(2, 1, 0)  # from x,y,z to z,y,x
 
     newarr = np.zeros(array.shape,dtype=np.float32)
     for depth in range(array.shape[0]):
@@ -27,27 +27,23 @@ def angle_transpose(file,degree,flag_string):
         jpg.reshape((jpg.shape[0],jpg.shape[1],1))
         img = Image.fromarray(jpg)
         #img.show()
-        out = img.rotate(degree)  # 逆时针旋转90度
+        out = img.rotate(degree)
         newarr[depth,:,:] = np.array(out).reshape(array.shape[1],-1)[:,:]
     newarr = newarr.transpose(2,1,0)
     print(newarr.shape)
     np.save(file.replace(".npy",flag_string+".npy"),newarr)
 
-x = np.load('1_high.npy')
-print(x.shape)
-angle_transpose('1_high.npy', 90, '_leftright')
+filelist = os.listdir(datadir)
 
-# filelist = os.listdir(datadir)
+errfile = []
+for onefile in filelist:
+    print(datadir + onefile)
+    try:
+        angle_transpose(datadir + onefile, 90, "_leftright")
+        angle_transpose(datadir + onefile, 180, "_updown")
+        angle_transpose(datadir + onefile, 270, "_diagonal")
+    except BaseException:
+        print(onefile)
+        errfile.append(onefile)
 
-# errfile = []
-# for onefile in filelist:
-#     print(datadir + onefile)
-#     try:
-#         angle_transpose(datadir + onefile,90,"_leftright")
-#         angle_transpose(datadir + onefile, 180, "_updown")
-#         angle_transpose(datadir + onefile, 270, "_diagonal")
-#     except BaseException:
-#         print(onefile)
-#         errfile.append(onefile)
-
-# csvTools.writeTXT('errfile.txt', errfile)
+csvTools.writeTXT('errfile.txt', errfile)

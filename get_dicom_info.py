@@ -13,15 +13,13 @@ import scipy.misc
 import cv2
 import numpy as np
 
-basedir = 'D:/Data/LIDC-IDRI/DOI/'
-resdir = 'D:/Data/LIDC-IDRI/NPY/'
-resdir2 = 'D:/Data/LIDC-IDRI/NNNPY/'
+basedir = '/data0/LIDC/DOI/'
+resdir = '303010/'
 
 noduleinfo = csvTools.readCSV('files/malignancy.csv')
 idscaninfo = csvTools.readCSV('files/id_scan.txt')
 
-print(len(noduleinfo))
-print(len(idscaninfo))
+print('normal')
 
 # LUNA2016 data prepare ,first step: truncate HU to -1000 to 400
 def truncate_hu(image_array):
@@ -41,7 +39,7 @@ def normalazation(image_array):
 
 
 def cutTheImage(x, y, pix):
-    temp = 20
+    temp = 15
     x1 = x - temp
     x2 = x + temp
     y1 = y - temp
@@ -98,10 +96,12 @@ for onenodule in noduleinfo:
         tempsign = 0
         for zslice in slices[zstart : zend]:
             pix = zslice.pixel_array
+            pix.flags.writeable = True
+
             pix = truncate_hu(pix)
             pix = normalazation(pix)
             cutpix = cutTheImage(y_loc, x_loc, pix)
-            cutpix = cv2.resize(cutpix, (20, 20))
+            # cutpix = cv2.resize(cutpix, (20, 20))
 
             # scipy.misc.imsave(str(tempsign) + '.jpeg', cutpix)
             tempsign += 1
@@ -114,5 +114,6 @@ for onenodule in noduleinfo:
             # print(resdir2 + onenodule[0] + '_low' + '.npy')
             np.save(resdir + onenodule[0] + '_low' + '.npy', cut_img)
     except BaseException:
-        f.write(onenodule[0] + '\n')
+        print(onenodule)
+
 

@@ -6,6 +6,11 @@ evaluation script
 import csv
 import platform
 
+def writeTXT(filename, lines):
+    with open(filename, 'w') as f:
+        for line in lines:
+            f.write(line+'\n')
+
 def writeCSV(filename, lines):
     if 'Darwin' in platform.system():
         with open(filename, "wb") as f:
