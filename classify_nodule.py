@@ -35,6 +35,7 @@ lmns = 880
 hmns = 495
 midd = 1243
 
+we get
 867
 480
 1288
