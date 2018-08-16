@@ -16,7 +16,7 @@ basedir = 'D:Data/LIDC-IDRI/NPY/'
 
 # 10477 - 10456
 
-datas = os.listdir(basedir)
+# datas = os.listdir(basedir)
 # print(len(datas))
 
 # errdatas = csvTools.readCSV('errfile.txt')
