@@ -47,19 +47,7 @@ noudle_chara_list = []
 for scan in listscan:
     scanid = scan[10:14]
     scanid = int(scanid)
-    # print(scanid)
 
-    # nodulelist = []
-    # for metadata in metadatas:
-        # print(type(scanid))
-        # print(type(metadata[1]))
-        # if int(metadata[1]) == scanid:
-        #     print(metadata[10], metadata[11], metadata[12], metadata[13])
-        #     nodulelist.append(metadata[10])
-        #     nodulelist.append(metadata[11])
-        #     nodulelist.append(metadata[12])
-        #     nodulelist.append(metadata[13])
-        #     break
 
     dicomfile = []
     xmlfile = []
@@ -70,10 +58,6 @@ for scan in listscan:
             xmlfile.append(filename)
         if '.dcm' in filename:
             dicomfile.append(filename)
-    # print(len(dicomfile))
-    # print(len(xmlfile))
-    # if len(xmlfile) > 1:
-    #     print(scan)
 
     '''
     LIDC-IDRI-0127/1.3.6.1.4.1.14519.5.2.1.6279.6001.195975724868929317649402600442/1.3.6.1.4.1.14519.5.2.1.6279.6001.229343399861261429237689489892

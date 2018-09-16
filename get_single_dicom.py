@@ -89,25 +89,3 @@ for onenodule in noduleinfo:
     pix = slices[z_loc - 1].pixel_array
     cutpix = cutTheImage(y_loc, x_loc, pix)
     scipy.misc.imsave(resdir + scanid + '.jpeg', cutpix)
-    # print(np.min(cut_img))
-
-    # add z loc
-    # zstart = z_loc - 1 - 15
-    # zend = z_loc - 1 + 15
-
-    # tempsign = 0
-    # for zslice in slices[zstart : zend]:
-    #     pix = zslice.pixel_array
-    #     pix = truncate_hu(pix)
-    #     pix = normalazation(pix)
-    #     cutpix = cutTheImage(y_loc, x_loc, pix)
-    #     # scipy.misc.imsave(str(tempsign) + '.jpeg', cutpix)
-    #     tempsign += 1
-    #     cut_img.append(cutpix)
-    # # print(onenodule)
-    # if float(onenodule[29]) >= 3.5:
-    #     # print(resdir2 + onenodule[0] + '_high' + '.npy')
-    #     np.save(resdir2 + onenodule[0] + '_high' + '.npy', cut_img)
-    # elif float(onenodule[29]) < 2.5:
-    #     # print(resdir2 + onenodule[0] + '_low' + '.npy')
-    #     np.save(resdir2 + onenodule[0] + '_low' + '.npy', cut_img)

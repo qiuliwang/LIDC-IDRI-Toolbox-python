@@ -1,9 +1,0 @@
-1863_low.npy
-265_low.npy
-1862_low.npy
-2569_low.npy
-313_low.npy
-2496_low.npy
-2247_low.npy
-805_low.npy
-55_high.npy

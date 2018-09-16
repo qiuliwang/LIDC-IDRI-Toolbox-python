@@ -78,16 +78,13 @@ for onenodule in noduleinfo:
             if '.dcm' in onefile:
                 filelist2.append(onefile)
             
-        # print(len(filelist2))
         slices = [pydicom.dcmread(basedir + scanpath + '/' + s) for s in filelist2]
         slices.sort(key = lambda x : float(x.ImagePositionPatient[2]),reverse=True)
         x_loc = int(onenodule[6])
         y_loc = int(onenodule[7])
         z_loc = int(onenodule[8])
-        # print(x_loc, y_loc, z_loc)
         pix = slices[z_loc - 1].pixel_array
         cut_img = []
-        # print(np.min(cut_img))
 
         # add z loc
         zstart = z_loc - 1 - 5
@@ -101,17 +98,13 @@ for onenodule in noduleinfo:
             pix = truncate_hu(pix)
             pix = normalazation(pix)
             cutpix = cutTheImage(y_loc, x_loc, pix)
-            # cutpix = cv2.resize(cutpix, (20, 20))
 
             # scipy.misc.imsave(str(tempsign) + '.jpeg', cutpix)
             tempsign += 1
             cut_img.append(cutpix)
-        # print(onenodule)
         if float(onenodule[29]) >= 3.5:
-            # print(resdir2 + onenodule[0] + '_high' + '.npy')
             np.save(resdir + onenodule[0] + '_high' + '.npy', cut_img)
         elif float(onenodule[29]) < 2.5:
-            # print(resdir2 + onenodule[0] + '_low' + '.npy')
             np.save(resdir + onenodule[0] + '_low' + '.npy', cut_img)
     except BaseException:
         print(onenodule)

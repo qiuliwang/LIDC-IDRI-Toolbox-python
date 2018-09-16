@@ -2,7 +2,7 @@
 Created by Wang Qiu Li
 7/3/2018
 
-get dicom info according to malignancy.csv and ld_scan.txt
+transpose nodule data to create more data
 '''
 
 import numpy as np
