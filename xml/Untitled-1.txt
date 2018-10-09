@@ -1,0 +1,19 @@
+\begin{table*}[htbp]
+\caption{Comparison with Other Studies for FPR}
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+\textbf{\textit{Methods}} & \textbf{\textit{Accuracy}} & \textbf{\textit{Sensitivity}}& \textbf{\textit{Specificity}} & \textbf{\textit{AUC Score}} \\
+\hline
+ASMB3DCNN(5 Branches)  & {\bfseries 0.974} & 0.935 &0.992 & 0.967 \\
+ASMB3DCNN(4 Branches)  &0.969 & 0.898 & 0.996 &0.969 \\
+ASMB3DCNN(1 Branch) &0.777  & 0.697 & {\bfseries 0.997} &0.753 \\
+Multilevel 3D-CNN\cite{Qi2016Multilevel} &- & 0.827 &-&-\\
+UACNN(ccanoespinosa) &- &0.824 &-&- \\
+NoduleX\cite{Causey2018Highly} &0.946 & {\bfseries 0.948} & 0.972 & {\bfseries 0.984} \\
+\hline
+
+\end{tabular}
+\label{tab5}
+\end{center}
+\end{table*}
