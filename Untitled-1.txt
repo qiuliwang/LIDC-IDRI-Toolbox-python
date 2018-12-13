@@ -1,0 +1,336 @@
+hospital
+['AccessionNumber', 'AcquisitionDate', 'AcquisitionDateTime', 'AcquisitionNumber', 'AcquisitionTime', 'BitsAllocated', 'BitsStored', 'BodyPartExamined', 'CTDIPhantomTypeCodeSequence', 'CTDIvol', 'CalciumScoringMassFactorDevice', 'Columns', 'ConfidentialityConstraintOnPatientDataDescription', 'ContentDate', 'ContentTime', 'ConvolutionKernel', 'DataCollectionCenterPatient', 'DataCollectionDiameter', 'DateOfLastCalibration', 'DeviceSerialNumber', 'DistanceSourceToDetector', 'DistanceSourceToPatient', 'EstimatedDoseSaving', 'Exposure', 'ExposureModulationType', 'ExposureTime', 'FilterType', 'FocalSpots', 'FrameOfReferenceUID', 'GantryDetectorTilt', 'GeneratorPower', 'HighBit', 'ImageComments', 'ImageOrientationPatient', 'ImagePositionPatient', 'ImageType', 'InstanceNumber', 'InstitutionAddress', 'InstitutionName', 'InstitutionalDepartmentName', 'IrradiationEventUID', 'KVP', 'LargestImagePixelValue', 'LossyImageCompression', 'Manufacturer', 'ManufacturerModelName', 'Modality', 'OperatorsName', 'OtherPatientIDs', 'OtherPatientNames', 'PatientAge', 'PatientBirthDate', 'PatientID', 'PatientName', 'PatientPosition', 'PatientSex', 'PhotometricInterpretation', 'PhysiciansOfRecord', 'PixelData', 'PixelRepresentation', 'PixelSpacing', 'PositionReferenceIndicator', 'ProcedureCodeSequence', 'ProtocolName', 'ReconstructionDiameter', 'ReconstructionTargetCenterPatient', 'ReferencedImageSequence', 'ReferencedPatientSequence', 'ReferencedStudySequence', 'ReferringPhysicianName', 'RequestAttributesSequence', 'RequestedProcedureCodeSequence', 'RequestingPhysician', 'RequestingService', 'RescaleIntercept', 'RescaleSlope', 'RescaleType', 'RotationDirection', 'Rows', 'SOPClassUID', 'SOPInstanceUID', 'SamplesPerPixel', 'SeriesDate', 'SeriesDescription', 'SeriesInstanceUID', 'SeriesNumber', 'SeriesTime', 'SingleCollimationWidth', 'SliceLocation', 'SliceThickness', 'SmallestImagePixelValue', 'SoftwareVersions', 'SourceImageSequence', 'SpiralPitchFactor', 'StationName', 'StudyDate', 'StudyDescription', 'StudyID', 'StudyInstanceUID', 'StudyTime', 'TableFeedPerRotation', 'TableHeight', 'TableSpeed', 'TimeOfLastCalibration', 'TotalCollimationWidth', 'WindowCenter', 'WindowCenterWidthExplanation', 'WindowWidth', 'XRayTubeCurrent']
+
+LIDC
+['AccessionNumber', 'AcquisitionDate', 'AcquisitionDateTime', 'AcquisitionTime', 'AdmittingDate', 'BitsAllocated', 'BitsStored', 'BodyPartExamined', 'Columns', 'ContentCreatorName', 'ContentDate', 'ContentTime', 'ContrastBolusAgent', 'ConvolutionKernel', 'CurveDate', 'DataCollectionDiameter', 'DeidentificationMethod', 'DistanceSourceToDetector', 'DistanceSourceToPatient', 'Exposure', 'ExposureTime', 'FillerOrderNumberImagingServiceRequest', 'FilterType', 'FocalSpots', 'FrameOfReferenceUID', 'GantryDetectorTilt', 'GeneratorPower', 'HighBit', 'ImageOrientationPatient', 'ImagePositionPatient', 'ImageType', 'InstanceNumber', 'KVP', 'LastMenstrualDate', 'LongitudinalTemporalInformationModified', 'Manufacturer', 'ManufacturerModelName', 'Modality', 'OverlayDate', 'PatientAge', 'PatientBirthDate', 'PatientID', 'PatientIdentityRemoved', 'PatientName', 'PatientPosition', 'PatientSex', 'PerformedProcedureStepStartDate', 'PersonName', 'PhotometricInterpretation', 'PixelData', 'PixelPaddingValue', 'PixelRepresentation', 'PixelSpacing', 'PlacerOrderNumberImagingServiceRequest', 'PositionReferenceIndicator', 'ReconstructionDiameter', 'ReferencedSOPInstanceUID', 'ReferringPhysicianName', 'RescaleIntercept', 'RescaleSlope', 'RotationDirection', 'Rows', 'SOPClassUID', 'SOPInstanceUID', 'SamplesPerPixel', 'ScanOptions', 'ScheduledProcedureStepEndDate', 'ScheduledProcedureStepStartDate', 'SeriesDate', 'SeriesInstanceUID', 'SeriesNumber', 'SliceLocation', 'SliceThickness', 'SoftwareVersions', 'SpecificCharacterSet', 'StorageMediaFileSetUID', 'StudyDate', 'StudyID', 'StudyInstanceUID', 'StudyTime', 'TableHeight', 'UID', 'VerifyingObserverName', 'WindowCenter', 'WindowWidth', 'XRayTubeCurrent']
+
+
+AccessionNumber
+(0008, 0050) Accession Number                    SH: '20180807133922'
+=====
+AcquisitionDate
+(0008, 0022) Acquisition Date                    DA: '20171113'
+=====
+AcquisitionDateTime
+(0008, 002a) Acquisition DateTime                DT: '20171113182407.401000'
+=====
+AcquisitionNumber
+(0020, 0012) Acquisition Number                  IS: '2'
+=====
+AcquisitionTime
+(0008, 0032) Acquisition Time                    TM: '182407.401000'
+=====
+BitsAllocated
+(0028, 0100) Bits Allocated                      US: 16
+=====
+BitsStored
+(0028, 0101) Bits Stored                         US: 12
+=====
+BodyPartExamined
+(0018, 0015) Body Part Examined                  CS: 'CHEST'
+=====
+CTDIPhantomTypeCodeSequence
+(0018, 9346) CTDI Phantom Type Code Sequence     SQ: <Sequence, length 1>
+=====
+CTDIvol
+(0018, 9345) CTDIvol                             FD: 11.151481210434781
+=====
+CalciumScoringMassFactorDevice
+(0018, 9352) Calcium Scoring Mass Factor Device  FL: [0.7429999709129333, 0.7789999842643738, 0.8119999766349792]
+=====
+Columns
+(0028, 0011) Columns                             US: 512
+=====
+ConfidentialityConstraintOnPatientDataDescription
+(0040, 3001) Confidentiality Constraint on Patie LO: 'Y'
+=====
+ContentDate
+(0008, 0023) Content Date                        DA: '20171113'
+=====
+ContentTime
+(0008, 0033) Content Time                        TM: '182407.401000'
+=====
+ConvolutionKernel
+(0018, 1210) Convolution Kernel                  SH: 'B80f'
+=====
+DataCollectionCenterPatient
+(0018, 9313) Data Collection Center (Patient)    FD: [0.33203125, -126.66796875, 200.3]
+=====
+DataCollectionDiameter
+(0018, 0090) Data Collection Diameter            DS: "500"
+=====
+DateOfLastCalibration
+(0018, 1200) Date of Last Calibration            DA: '20171113'
+=====
+DeviceSerialNumber
+(0018, 1000) Device Serial Number                LO: '74063'
+=====
+DistanceSourceToDetector
+(0018, 1110) Distance Source to Detector         DS: "1085.6"
+=====
+DistanceSourceToPatient
+(0018, 1111) Distance Source to Patient          DS: "595"
+=====
+EstimatedDoseSaving
+(0018, 9324) Estimated Dose Saving               FD: 52.25
+=====
+Exposure
+(0018, 1152) Exposure                            IS: '165'
+=====
+ExposureModulationType
+(0018, 9323) Exposure Modulation Type            CS: 'XYZ_EC'
+=====
+ExposureTime
+(0018, 1150) Exposure Time                       IS: '500'
+=====
+FilterType
+(0018, 1160) Filter Type                         SH: 'WEDGE_3'
+=====
+FocalSpots
+(0018, 1190) Focal Spot(s)                       DS: "1.2"
+=====
+FrameOfReferenceUID
+(0020, 0052) Frame of Reference UID              UI: 1.3.12.2.1107.5.1.4.74063.30000017111300165216300000664
+=====
+GantryDetectorTilt
+(0018, 1120) Gantry/Detector Tilt                DS: "0"
+=====
+GeneratorPower
+(0018, 1170) Generator Power                     IS: '45'
+=====
+HighBit
+(0028, 0102) High Bit                            US: 11
+=====
+ImageComments
+(0020, 4000) Image Comments                      LT: ''
+=====
+ImageOrientationPatient
+(0020, 0037) Image Orientation (Patient)         DS: ['1', '0', '0', '0', '1', '0']
+=====
+ImagePositionPatient
+(0020, 0032) Image Position (Patient)            DS: ['-182.66796875', '-296.66796875', '200.3']
+=====
+ImageType
+(0008, 0008) Image Type                          CS: ['ORIGINAL', 'PRIMARY', 'AXIAL', 'CT_SOM5 SPI']
+=====
+InstanceNumber
+(0020, 0013) Instance Number                     IS: '1'
+=====
+InstitutionAddress
+(0008, 0081) Institution Address                 ST: ''
+=====
+InstitutionName
+(0008, 0080) Institution Name                    LO: ''
+=====
+InstitutionalDepartmentName
+(0008, 1040) Institutional Department Name       LO: ''
+=====
+IrradiationEventUID
+(0008, 3010) Irradiation Event UID               UI: 1.3.12.2.1107.5.1.4.74063.30000017111300165216300000666
+=====
+KVP
+(0018, 0060) KVP                                 DS: "120"
+=====
+LargestImagePixelValue
+(0028, 0107) Largest Image Pixel Value           US: 3123
+=====
+LossyImageCompression
+(0028, 2110) Lossy Image Compression             CS: '00'
+=====
+Manufacturer
+(0008, 0070) Manufacturer                        LO: 'SIEMENS'
+=====
+ManufacturerModelName
+(0008, 1090) Manufacturer's Model Name           LO: 'SOMATOM Definition Flash'
+=====
+Modality
+(0008, 0060) Modality                            CS: 'CT'
+=====
+OperatorsName
+(0008, 1070) Operators' Name                     PN: ''
+=====
+OtherPatientIDs
+(0010, 1000) Other Patient IDs                   LO: ''
+=====
+OtherPatientNames
+(0010, 1001) Other Patient Names                 PN: 'WANG SHOU QUAN'
+=====
+PatientAge
+(0010, 1010) Patient's Age                       AS: ''
+=====
+PatientBirthDate
+(0010, 0030) Patient's Birth Date                DA: '20180807'
+=====
+PatientID
+(0010, 0020) Patient ID                          LO: 'AN_ID_20180807133922'
+=====
+PatientName
+(0010, 0010) Patient's Name                      PN: 'AN_NM_20180807133922'
+=====
+PatientPosition
+(0018, 5100) Patient Position                    CS: 'HFS'
+=====
+PatientSex
+(0010, 0040) Patient's Sex                       CS: 'O'
+=====
+PhotometricInterpretation
+(0028, 0004) Photometric Interpretation          CS: 'MONOCHROME2'
+=====
+PhysiciansOfRecord
+(0008, 1048) Physician(s) of Record              PN: 'HU ZHI HUI'
+=====
+PixelData
+(7fe0, 0010) Pixel Data                          OW: Array of 524288 bytes
+=====
+PixelRepresentation
+(0028, 0103) Pixel Representation                US: 0
+=====
+PixelSpacing
+(0028, 0030) Pixel Spacing                       DS: ['0.6640625', '0.6640625']
+=====
+PositionReferenceIndicator
+(0020, 1040) Position Reference Indicator        LO: ''
+=====
+ProcedureCodeSequence
+(0008, 1032) Procedure Code Sequence             SQ: <Sequence, length 1>
+=====
+ProtocolName
+(0018, 1030) Protocol Name                       LO: 'DE_ThoraxRoutine_C'
+=====
+ReconstructionDiameter
+(0018, 1100) Reconstruction Diameter             DS: "340"
+=====
+ReconstructionTargetCenterPatient
+(0018, 9318) Reconstruction Target Center (Patie FD: [-12.66796875, -126.66796875, 200.3]
+=====
+ReferencedImageSequence
+(0008, 1140) Referenced Image Sequence           SQ: <Sequence, length 1>
+=====
+ReferencedPatientSequence
+(0008, 1120) Referenced Patient Sequence         SQ: <Sequence, length 1>
+=====
+ReferencedStudySequence
+(0008, 1110) Referenced Study Sequence           SQ: <Sequence, length 1>
+=====
+ReferringPhysicianName
+(0008, 0090) Referring Physician's Name          PN: ''
+=====
+RequestAttributesSequence
+(0040, 0275) Request Attributes Sequence         SQ: <Sequence, length 1>
+=====
+RequestedProcedureCodeSequence
+(0032, 1064) Requested Procedure Code Sequence   SQ: <Sequence, length 1>
+=====
+RequestingPhysician
+(0032, 1032) Requesting Physician                PN: 'HU ZHI HUI'
+=====
+RequestingService
+(0032, 1033) Requesting Service                  LO: '210420'
+=====
+RescaleIntercept
+(0028, 1052) Rescale Intercept                   DS: "-1024"
+=====
+RescaleSlope
+(0028, 1053) Rescale Slope                       DS: "1"
+=====
+RescaleType
+(0028, 1054) Rescale Type                        LO: 'HU'
+=====
+RotationDirection
+(0018, 1140) Rotation Direction                  CS: 'CW'
+=====
+Rows
+(0028, 0010) Rows                                US: 512
+=====
+SOPClassUID
+(0008, 0016) SOP Class UID                       UI: CT Image Storage
+=====
+SOPInstanceUID
+(0008, 0018) SOP Instance UID                    UI: 1.3.12.2.1107.5.1.4.74063.30000017111300241057100112601
+=====
+SamplesPerPixel
+(0028, 0002) Samples per Pixel                   US: 1
+=====
+SeriesDate
+(0008, 0021) Series Date                         DA: '20171113'
+=====
+SeriesDescription
+(0008, 103e) Series Description                  LO: 'Non Contrast  5.0  B80f'
+=====
+SeriesInstanceUID
+(0020, 000e) Series Instance UID                 UI: 1.3.12.2.1107.5.1.4.74063.30000017111300241057100112542
+=====
+SeriesNumber
+(0020, 0011) Series Number                       IS: '2'
+=====
+SeriesTime
+(0008, 0031) Series Time                         TM: '182409.355000'
+=====
+SingleCollimationWidth
+(0018, 9306) Single Collimation Width            FD: 0.6
+=====
+SliceLocation
+(0020, 1041) Slice Location                      DS: "200.3"
+=====
+SliceThickness
+(0018, 0050) Slice Thickness                     DS: "5"
+=====
+SmallestImagePixelValue
+(0028, 0106) Smallest Image Pixel Value          US: 0
+=====
+SoftwareVersions
+(0018, 1020) Software Version(s)                 LO: 'syngo CT 2012B'
+=====
+SourceImageSequence
+(0008, 2112) Source Image Sequence               SQ: <Sequence, length 1>
+=====
+SpiralPitchFactor
+(0018, 9311) Spiral Pitch Factor                 FD: 1.2
+=====
+StationName
+(0008, 1010) Station Name                        SH: ''
+=====
+StudyDate
+(0008, 0020) Study Date                          DA: '20171113'
+=====
+StudyDescription
+(0008, 1030) Study Description                   LO: 'Private^DE_ThoraxRoutine_C (Adult)'
+=====
+StudyID
+(0020, 0010) Study ID                            SH: '13781682'
+=====
+StudyInstanceUID
+(0020, 000d) Study Instance UID                  UI: 1.2.410.200010.1090155.5932.9072414.13781682.13781682
+=====
+StudyTime
+(0008, 0030) Study Time                          TM: '182101.723000'
+=====
+TableFeedPerRotation
+(0018, 9310) Table Feed per Rotation             FD: 46.0
+=====
+TableHeight
+(0018, 1130) Table Height                        DS: "127"
+=====
+TableSpeed
+(0018, 9309) Table Speed                         FD: 92.0
+=====
+TimeOfLastCalibration
+(0018, 1201) Time of Last Calibration            TM: '075036.000000'
+=====
+TotalCollimationWidth
+(0018, 9307) Total Collimation Width             FD: 38.4
+=====
+WindowCenter
+(0028, 1050) Window Center                       DS: "-550"
+=====
+WindowCenterWidthExplanation
+(0028, 1055) Window Center & Width Explanation   LO: ['WINDOW1', 'WINDOW2']
+=====
+WindowWidth
+(0028, 1051) Window Width                        DS: "1400"
+=====
+XRayTubeCurrent
+(0018, 1151) X-Ray Tube Current                  IS: '396'
+=====
+
+
