@@ -4,7 +4,7 @@ import pydicom
 import cv2
 import os
 
-path = '/raid/data/clinic/clinic/benign1/'
+path = '../testdicom/'
 
 patients = os.listdir(path)
 print(len(patients))
