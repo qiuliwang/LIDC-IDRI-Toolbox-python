@@ -38,16 +38,21 @@ def get_pixels_hu(slices):
 
 def resample(image, scan, new_spacing=[1,1,1]):
     # Determine current pixel spacing
-    # print(scan[0].SliceThickness)
-    # spacing = map(float, ([scan[0].SliceThickness,scan[0].PixelSpacing]))
-    # spacing = np.array(list(spacing))
-    # resize_factor = spacing / new_spacing
-    # new_real_shape = image.shape * resize_factor
-    # new_shape = np.round(new_real_shape)
-    # real_resize_factor = new_shape / image.shape
-    # new_spacing = spacing / real_resize_factor
-    image = scipy.ndimage.interpolation.zoom(image, 0.5, mode='nearest')
-    return image
+    slicethickness = (scan[0].SliceThickness)
+    pixel_spacing = list(scan[0].data_element("PixelSpacing"))
+    spacing = map(float, ([slicethickness] + pixel_spacing))
+
+    spacing = np.array(list(spacing))
+    # print("here here:　",spacing)
+    resize_factor = spacing / new_spacing
+    new_real_shape = image.shape * resize_factor
+    new_shape = np.round(new_real_shape)
+    real_resize_factor = new_shape / image.shape
+    new_spacing = spacing / real_resize_factor
+ 
+    image = scipy.ndimage.interpolation.zoom(image, real_resize_factor, mode='nearest')
+ 
+    return image, new_spacing
 
 def plot_3d(image, threshold=-300):
     # Position the scan upright,
@@ -87,7 +92,7 @@ def normalize(image):
     image[image<0] = 0.
     return image
 
-for patient in patients:
+for patient in patients[:1]:
     print(patient)
     dcmfiles = os.listdir(os.path.join(pathdir, patient))
     # print(dcmfiles)
@@ -95,7 +100,7 @@ for patient in patients:
     slices.sort(key = lambda x : float(x.ImagePositionPatient[2]),reverse=True)
     patient_pixels = get_pixels_hu(slices)#.transpose(2,1,0)
     print(patient_pixels.shape)
-    np.save(npypathdir + patient, patient_pixels)
+    # np.save(npypathdir + patient, patient_pixels)
     # segmented_lungs_fill = segment_lung_mask(first_patient_pixels, True)
 
 #     plot_3d(first_patient_pixels, 0)
@@ -110,6 +115,9 @@ for patient in patients:
     
     # print(type(first_patient_pixels))
     # print(first_patient_pixels.shape)
-    # pix_resampled = resample(first_patient_pixels, slices, [1, 1, 1])
-    # print(pix_resampled.shape)
-    # plot_3d(pix_resampled, 0)
+    pix_resampled, new_spacing = resample(patient_pixels, slices, [1, 1, 1])
+    print((pix_resampled.shape))
+    plot_3d(pix_resampled, 400)
+
+    # np.save(npypathdir + patient, patient_pixels)
+# 

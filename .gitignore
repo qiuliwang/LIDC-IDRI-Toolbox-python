@@ -2,3 +2,4 @@
 /testdirdicom/
 .DS_Store
 *.jpg
+*.dcm

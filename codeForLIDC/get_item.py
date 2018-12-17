@@ -19,12 +19,11 @@ dir = 'testdicom/'
 
 # print(selist)
 
-ds = pydicom.dcmread('FILE1.dcm')
-print(type(ds.dir()))
+ds = pydicom.dcmread('000001.dcm')
 for elem in ds.dir():
-    if elem == 'PatientSex':
-        contant = ds.data_element(elem)
-        print(contant.value)
+    if elem == 'SliceThickness':
+        contant = ds.SliceThickness
+        print(contant)
 print('\n\n')
 
 
