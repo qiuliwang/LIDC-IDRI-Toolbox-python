@@ -13,6 +13,7 @@ from mpl_toolkits.mplot3d.art3d import Poly3DCollection
 import scipy.ndimage
 
 pathdir = '/raid/data/clinic/data/pathology2/'
+npypathdir = '/raid/data/clinic/data/pathologynpy/'
 
 patients = os.listdir(pathdir)
 print(len(patients))
@@ -51,12 +52,8 @@ def resample(image, scan, new_spacing=[1,1,1]):
 def plot_3d(image, threshold=-300):
     # Position the scan upright,
     # so the head of the patient would be at the top facing the camera
-    p = image.transpose(0,1,2) #2
-    p = p.transpose(2,1,0) #2
-    p = p.transpose(2,1,0) #2
 
-    # #p = image.transpose(0,2,1)3
-    # p = image.transpose(0,2,1)#4
+    p = image#.transpose(2,1,0)
 
     # p = image
     verts, faces = measure.marching_cubes_classic(p, threshold)
@@ -70,17 +67,49 @@ def plot_3d(image, threshold=-300):
     ax.set_xlim(0, p.shape[0])
     ax.set_ylim(0, p.shape[1])
     ax.set_zlim(0, p.shape[2])
-    plt.savefig("examples1.jpg")
-    plt.show()
+    plt.savefig("examples2.jpg")
+    # plt.show()
 
-for patient in patients[:1]:
+def largest_label_volume(im, bg = -1):
+    vals, counts = np.unique(im, return_counts = True)
+
+    counts = counts[vals != bg]
+    vals = vals[vals != bg]
+
+    if len(counts) > 0:
+        return vals[np.argmax(counts)]
+    else:
+        return None
+    
+def normalize(image):
+    image = (image - MIN_BOUND) / (MAX_BOUND - MIN_BOUND)
+    image[image>1] = 1.
+    image[image<0] = 0.
+    return image
+
+for patient in patients:
+    print(patient)
     dcmfiles = os.listdir(os.path.join(pathdir, patient))
     # print(dcmfiles)
     slices = [pydicom.dcmread(os.path.join(pathdir, patient, s)) for s in dcmfiles]
     slices.sort(key = lambda x : float(x.ImagePositionPatient[2]),reverse=True)
-    first_patient_pixels = get_pixels_hu(slices)
-    print(type(first_patient_pixels))
-    print(first_patient_pixels.shape)
-    pix_resampled = resample(first_patient_pixels, slices, [1, 1, 1])
-    print(pix_resampled.shape)
-    plot_3d(pix_resampled, 400)
+    patient_pixels = get_pixels_hu(slices)#.transpose(2,1,0)
+    print(patient_pixels.shape)
+    np.save(npypathdir + patient, patient_pixels)
+    # segmented_lungs_fill = segment_lung_mask(first_patient_pixels, True)
+
+#     plot_3d(first_patient_pixels, 0)
+
+# # plot_3d(segmented_lungs_fill, 0)
+
+# # plot_3d(segmented_lungs_fill - segmented_lungs, 0)
+
+#     # first_patient_pixels = first_patient_pixels.transpose(1,0,2)
+#     # first_patient_pixels = first_patient_pixels.transpose(1,0,2)
+#     # print(first_patient_pixels.shape)
+    
+    # print(type(first_patient_pixels))
+    # print(first_patient_pixels.shape)
+    # pix_resampled = resample(first_patient_pixels, slices, [1, 1, 1])
+    # print(pix_resampled.shape)
+    # plot_3d(pix_resampled, 0)
