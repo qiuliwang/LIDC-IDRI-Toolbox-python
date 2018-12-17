@@ -5,21 +5,19 @@ import cv2
 import os
 import SeNDicom
 import shutil
+import tqdm
 
-path = '../testdicom/'
-pathdir = '../testdirdicom/'
-# print(os.path.dirname(os.getcwd()))
+path = '/raid/data/clinic/data/pathology1/'
+pathdir = '/raid/data/clinic/data/pathology2/'
 
 patients = os.listdir(path)
-print(len(patients))
-
-print(patients[:1])
+print("number of patitents: ", len(patients))
 
 b80ffiles = []
 
 seriesNumber = []
 slicethickness = []
-for patient in patients[:1]:
+for patient in tqdm.tqdm(patients):
         files = os.listdir(path + patient)
         bestdicom = []
         dictfordicoms = {}
@@ -30,7 +28,7 @@ for patient in patients[:1]:
                         convKernel = ds.data_element("ConvolutionKernel").value
                         se = ds.data_element("SeriesNumber").value
                         thickness = ds.data_element("SliceThickness").value
-                        if convKernel == 'B80f':
+                        if convKernel == 'B80f' or 'I70f':
                                 dictkeys = dictfordicoms.keys()
                                 if not se in dictkeys:
                                         dictfordicoms[se] = 1
@@ -38,12 +36,13 @@ for patient in patients[:1]:
                                         dictfordicoms[se] += 1
                         # print(onefile)
 
-        for key in dictfordicoms.keys():
-                print(key, dictfordicoms[key])
+        # for key in dictfordicoms.keys():
+        #         print(key, dictfordicoms[key])
 
-        # get max key value/se number
+        # # get max key value/se number
+        # print(patient)
         key_name = max(dictfordicoms, key=dictfordicoms.get)
-        print(key_name)
+        # print(key_name)
 
         '''
         os.makedirs(path) 
