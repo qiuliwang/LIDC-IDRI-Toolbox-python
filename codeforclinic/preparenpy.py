@@ -92,7 +92,7 @@ def normalize(image):
     image[image<0] = 0.
     return image
 
-for patient in patients[:1]:
+for patient in patients:
     print(patient)
     dcmfiles = os.listdir(os.path.join(pathdir, patient))
     # print(dcmfiles)
@@ -117,7 +117,7 @@ for patient in patients[:1]:
     # print(first_patient_pixels.shape)
     pix_resampled, new_spacing = resample(patient_pixels, slices, [1, 1, 1])
     print((pix_resampled.shape))
-    plot_3d(pix_resampled, 400)
+    # plot_3d(pix_resampled, 400)
 
-    # np.save(npypathdir + patient, patient_pixels)
+    np.save(npypathdir + patient, pix_resampled)
 # 
