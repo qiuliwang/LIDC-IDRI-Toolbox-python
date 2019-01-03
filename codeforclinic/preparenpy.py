@@ -13,7 +13,7 @@ from mpl_toolkits.mplot3d.art3d import Poly3DCollection
 import scipy.ndimage
 
 pathdir = '/raid/data/clinic/data/pathology2/'
-npypathdir = '/raid/data/clinic/data/pathologynpy/'
+npypathdir = '/raid/data/clinic/data/cutpathologynpy/'
 
 patients = os.listdir(pathdir)
 print(len(patients))
@@ -72,7 +72,7 @@ def plot_3d(image, threshold=-300):
     ax.set_xlim(0, p.shape[0])
     ax.set_ylim(0, p.shape[1])
     ax.set_zlim(0, p.shape[2])
-    plt.savefig("examples2.jpg")
+    plt.savefig("examples3.jpg")
     # plt.show()
 
 def largest_label_volume(im, bg = -1):
@@ -92,32 +92,19 @@ def normalize(image):
     image[image<0] = 0.
     return image
 
-for patient in patients:
-    print(patient)
+def cutTheImage(slices):
+    res = []
+    for slice in slices:
+        res.append(slice[60:400, 0:512])
+    return np.array(res)
+
+for patient in tqdm.tqdm(patients):
     dcmfiles = os.listdir(os.path.join(pathdir, patient))
-    # print(dcmfiles)
     slices = [pydicom.dcmread(os.path.join(pathdir, patient, s)) for s in dcmfiles]
     slices.sort(key = lambda x : float(x.ImagePositionPatient[2]),reverse=True)
     patient_pixels = get_pixels_hu(slices)#.transpose(2,1,0)
-    print(patient_pixels.shape)
-    # np.save(npypathdir + patient, patient_pixels)
-    # segmented_lungs_fill = segment_lung_mask(first_patient_pixels, True)
-
-#     plot_3d(first_patient_pixels, 0)
-
-# # plot_3d(segmented_lungs_fill, 0)
-
-# # plot_3d(segmented_lungs_fill - segmented_lungs, 0)
-
-#     # first_patient_pixels = first_patient_pixels.transpose(1,0,2)
-#     # first_patient_pixels = first_patient_pixels.transpose(1,0,2)
-#     # print(first_patient_pixels.shape)
-    
-    # print(type(first_patient_pixels))
-    # print(first_patient_pixels.shape)
+    patient_pixels = cutTheImage(patient_pixels)
     pix_resampled, new_spacing = resample(patient_pixels, slices, [1, 1, 1])
-    print((pix_resampled.shape))
-    # plot_3d(pix_resampled, 400)
 
     np.save(npypathdir + patient, pix_resampled)
 # 
