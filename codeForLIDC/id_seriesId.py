@@ -8,7 +8,7 @@
 Created by WangQL
 4.9.2018
 
-获取结节图像
+get nodules from CT use list3.2.csv
 '''
 
 import os

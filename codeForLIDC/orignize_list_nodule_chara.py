@@ -3,6 +3,7 @@ Created by Wang Qiu Li
 7/2/2018
 
 orignize info in nodule_chara_list.csv and list3.2.csv
+and save as malignancy.csv
 '''
 
 import os
@@ -36,34 +37,22 @@ def getAve(numlist):
         ave = ave / len(numlist)
     return ave
 
-
 nodule_chara = csvTools.readCSV(csvdir + 'nodule_chara_list.csv')
-# print(len(nodule_chara))
 
 list3 = csvTools.readCSV(csvdir + 'list3.2.csv')
 list3 = list3[1:len(list3)]
-# print(len(list3))
-
-# LIDC-IDRI-0001,Nodule 001,5,1,6,3,3,3,4,5,5
-# 1,1,3000566,1,6459.75,23.107,317,367,43,,IL057_127364,Nodule 001,MI014_12127,0,,,
-
 count = 0
 sign = 0
 
 list3_2 = []
 for item in list3:
-
     id = item[0]
-    # print('=====')
-    # print(id)
     case = item[1]
     case = caseid_to_scanid(int(case))
-    # print(case)
 
     ldlist = []
     for ids in item[10:14]:
         item.append(ids)
-        # print(ids)
         if str(ids) != '':
             ldlist.append(str(ids))
         
@@ -75,51 +64,26 @@ for item in list3_2:
     sign = 0
 
     id = item[0]
-    # print(id)
     case = item[1]
     print("=================")
-    # print(case)
     case = caseid_to_scanid(int(case))        
     print(case)
 
-    # print(case)
 
     ldlist = []
     for ids in item[10:14]:
-        # print(ids)
-        # item.append(ids)
-        # print(ids)
         if str(ids) != '':
             print(ids)
             ldlist.append(ids)
     
     if len(ldlist) != 4:
         print('=====')
-        # print(case)
-        # print(len(ldlist))
-        # for ids in item[10:14]:
-        # # item.append(ids)
-        # # print(ids)
-        #     if str(ids) != '':
-        #         print(ids)
     
     # nodule_chara that contain case
     case_chara_id = []
     for cach in nodule_chara:
         if cach[0] == case:
             case_chara_id.append(cach)
-
-    
-            # <subtlety>5</subtlety>
-            # <internalStructure>1</internalStructure>
-            # <calcification>6</calcification>
-            # <sphericity>3</sphericity>
-            # <margin>3</margin>
-            # <lobulation>3</lobulation>
-            # <spiculation>4</spiculation>
-            # <texture>5</texture>
-            # <malignancy>5</malignancy>
-
     store_subtlety = []
     store_internalStructure = []
     store_calcification = []

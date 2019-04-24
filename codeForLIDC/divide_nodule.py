@@ -2,7 +2,7 @@
 Created by Wang Qiu Li
 7/3/2018
 
-classify the nodules into two groups
+divide the nodules into two groups
 level 1 and 2 are classified into LMNs
 level 4 and 5 are classified into HMHs
 level 3 are excluded

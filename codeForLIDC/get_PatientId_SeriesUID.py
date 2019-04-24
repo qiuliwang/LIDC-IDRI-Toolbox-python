@@ -1,6 +1,7 @@
 '''
 Created by Wang Qiu Li
 6/27/2018
+get relationship between id and CT scans(cause LIDC also contains X-ray)
 '''
 
 import csvTools

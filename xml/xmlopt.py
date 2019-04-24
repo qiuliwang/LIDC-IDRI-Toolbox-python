@@ -4,6 +4,7 @@ Created by WangQL
 6/27/2018
 
 operation for xml files
+get structure of xml files from LIDC
 '''
 
 try: 

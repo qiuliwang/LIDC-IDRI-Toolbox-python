@@ -4,6 +4,7 @@ Created by Wang Qiu Li
 7/4/2018
 
 prepare data for malignancy model
+get nodules according to malignancy level, and save as npy files
 '''
 
 import os
@@ -16,22 +17,7 @@ basedir = 'D:Data/LIDC-IDRI/NPY/'
 
 # 10477 - 10456
 
-<<<<<<< HEAD
-# datas = os.listdir(basedir)
-# print(len(datas))
-
-# errdatas = csvTools.readCSV('errfile.txt')
-# print(len(errdatas))
-
-# for errdata in errdatas:
-#     dataname = errdata[0]
-#     datapath = basedir + dataname
-#     print(datapath)
-#     os.remove(datapath)
-# print('done!')
-=======
 datas = os.listdir(basedir)
->>>>>>> 483ac29c523f5f75d11d3aff8eaabf2f6e78d979
 
 labels = csvTools.readCSV('files/malignancy.csv')
 

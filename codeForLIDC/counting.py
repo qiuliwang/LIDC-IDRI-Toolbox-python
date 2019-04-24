@@ -1,3 +1,8 @@
+'''
+Created by WangQL
+counting nodules according to its different attributes
+'''
+
 import csvTools
 
 labels = csvTools.readCSV('files/malignancy.csv')
