@@ -1,14 +1,18 @@
 #-*- coding: UTF-8 -*-
 
+'''
+Created by WangQL
+2019.4.25
+get 'B80f', 'I70f', 'B70f', 'B80', 'B70s' from original CT scans and copy them to another dir
+'''
 import pydicom
 import cv2
 import os
-import SeNDicom
 import shutil
 import tqdm
 
-path = '/raid/data/clinic/data/pathology1/'
-pathdir = '/raid/data/clinic/data/pathology2/'
+path = '/home/wangqiuli/Data/pneumonia/chest3/'
+pathdir = '/home/wangqiuli/Data/pneumonia/SecondNormal/'
 
 patients = os.listdir(path)
 print("number of patitents: ", len(patients))
@@ -16,87 +20,103 @@ print("number of patitents: ", len(patients))
 b80ffiles = []
 
 seriesNumber = []
-slicethickness = []
+kernellist = []
+# slicethickness = ['B80f', 'I70f', 'B70f', 'B80', 'B70s']
+record = open('failedCasesNormal.txt', 'w')
 for patient in tqdm.tqdm(patients):
         files = os.listdir(path + patient)
         bestdicom = []
         dictfordicoms = {}
-        
-        for onefile in files:
+        # print('================')
+        print(patient)
+        for onefile in (files):
                 ds = pydicom.dcmread(os.path.join(path, patient, onefile))
-                if "ConvolutionKernel" in ds.dir():
+                if ("ConvolutionKernel" in ds.dir()) and ('SeriesDescription' in ds.dir()):
                         convKernel = ds.data_element("ConvolutionKernel").value
                         se = ds.data_element("SeriesNumber").value
                         thickness = ds.data_element("SliceThickness").value
-                        if convKernel == 'B80f' or 'I70f':
-                                dictkeys = dictfordicoms.keys()
-                                if not se in dictkeys:
-                                        dictfordicoms[se] = 1
-                                else:
-                                        dictfordicoms[se] += 1
-                        # print(onefile)
+                        SPO = ds.data_element('SeriesDescription').value
+                        if ('SPO' not in SPO) and ('MPR' not in SPO):
+                                if convKernel == 'B80f': #or 'I70f':# or 'B70f' or 'B80':
+                                        # print(convKernel)
+                                        dictkeys = dictfordicoms.keys()
+                                        if not se in dictkeys:
+                                                dictfordicoms[se] = 1
+                                        else:
+                                                dictfordicoms[se] += 1
+                                if convKernel == 'I70f': #or 'I70f':# or 'B70f' or 'B80':
+                                        # print(convKernel)
+                                        dictkeys = dictfordicoms.keys()
+                                        if not se in dictkeys:
+                                                dictfordicoms[se] = 1
+                                        else:
+                                                dictfordicoms[se] += 1                        
+                                if convKernel == 'B70f': #or 'I70f':# or 'B70f' or 'B80':
+                                        # print(convKernel)
+                                        dictkeys = dictfordicoms.keys()
+                                        if not se in dictkeys:
+                                                dictfordicoms[se] = 1
+                                        else:
+                                                dictfordicoms[se] += 1
+                                if convKernel == 'B80': #or 'I70f':# or 'B70f' or 'B80':
+                                        # print(convKernel)
+                                        dictkeys = dictfordicoms.keys()
+                                        if not se in dictkeys:
+                                                dictfordicoms[se] = 1
+                                        else:
+                                                dictfordicoms[se] += 1
+                                if convKernel == 'B70s': #or 'I70f':# or 'B70f' or 'B80':
+                                        # print(convKernel)
+                                        dictkeys = dictfordicoms.keys()
+                                        if not se in dictkeys:
+                                                dictfordicoms[se] = 1
+                                        else:
+                                                dictfordicoms[se] += 1
+                                if convKernel == 'B31f': #or 'I70f':# or 'B70f' or 'B80':
+                                        # print(convKernel)
+                                        dictkeys = dictfordicoms.keys()
+                                        if not se in dictkeys:
+                                                dictfordicoms[se] = 1
+                                        else:
+                                                dictfordicoms[se] += 1
+                                if convKernel[0] == 'I31f': #or 'I70f':# or 'B70f' or 'B80':
+                                        # print(convKernel)
+                                        dictkeys = dictfordicoms.keys()
+                                        if not se in dictkeys:
+                                                dictfordicoms[se] = 1
+                                        else:
+                                                dictfordicoms[se] += 1    
 
-        # for key in dictfordicoms.keys():
-        #         print(key, dictfordicoms[key])
 
-        # # get max key value/se number
+
+                # print(dictfordicoms.keys())
+
+        if (len(dictfordicoms.keys()) > 0):
+                key_name = max(dictfordicoms, key=dictfordicoms.get)
+                # print(key_name)
+                # print(dictfordicoms[key_name])
+        # print('xxxxx')
         # print(patient)
-        key_name = max(dictfordicoms, key=dictfordicoms.get)
         # print(key_name)
+        # print(dictfordicoms[key_name])
+                '''
+                os.makedirs(path) 
+                shutil.copy(sourceDir,  targetDir)
+                isExists=os.path.exists(path)
 
-        '''
-        os.makedirs(path) 
-        shutil.copy(sourceDir,  targetDir)
-            isExists=os.path.exists(path)
+                '''
+		if not os.path.exists(pathdir + patient):
+                	os.makedirs(pathdir + patient)
+		
+                	for onefile in files:
+                        	ds = pydicom.dcmread(os.path.join(path, patient, onefile))
+                        	if "ConvolutionKernel" in ds.dir():
+                                	se = ds.data_element("SeriesNumber").value
+                                	thickness = ds.data_element("SliceThickness").value
+                               		if se == key_name:
+                                        	shutil.copy(os.path.join(path, patient, onefile), os.path.join(pathdir, patient, onefile))
 
-        '''
-        os.makedirs(pathdir + patient)
+        else:
+                record.write(patient + '\n')
 
-        for onefile in files:
-                ds = pydicom.dcmread(os.path.join(path, patient, onefile))
-                if "ConvolutionKernel" in ds.dir():
-                        se = ds.data_element("SeriesNumber").value
-                        thickness = ds.data_element("SliceThickness").value
-                        if se == key_name:
-                                shutil.copy(os.path.join(path, patient, onefile), os.path.join(pathdir, patient, onefile))
-
-
-        # for onefile in files:
-        #         ds = pydicom.dcmread(os.path.join(path, patient, onefile))
-        #         #ConvolutionKernel
-        #         if "ConvolutionKernel" in ds.dir():
-        #                 contant = ds.data_element("ConvolutionKernel")
-        #                 se = ds.data_element("SeriesNumber")
-        #                 thickness = ds.data_element("SliceThickness").value
-        #                 if contant.value == 'B80f':
-        #                         b80ffiles.append(onefile)
-        #                         if not se in seriesNumber:
-        #                                 seriesNumber.append(se)
-        #                         if not thickness in slicethickness:
-        #                                 slicethickness.append(thickness)
-
-        # minithickness = 10
-        # for temp in slicethickness:
-        #         if temp < minithickness:
-        #                 minithickness = temp
-        # print(minithickness)
-
-        # for onefile in files:
-        #         ds = pydicom.dcmread(os.path.join(path, patient, onefile))       
-        #         if "ConvolutionKernel" in ds.dir():
-        #                 contant = ds.data_element("ConvolutionKernel")
-        #                 se = ds.data_element("SeriesNumber")
-        #                 thickness = ds.data_element("SliceThickness").value
-        #                 if contant.value == 'B80f' and thickness == minithickness:
-        #                         bestdicom.append(onefile)
-
-        # print(len(bestdicom))
-
-
-
-# print(len(b80ffiles))
-# print(len(seriesNumber))
-
-# for se in seriesNumber:
-#         print(se.value)
-
+record.close()

@@ -12,10 +12,10 @@ from mpl_toolkits.mplot3d import Axes3D
 from mpl_toolkits.mplot3d.art3d import Poly3DCollection
 import scipy.ndimage
 
-pathdir = '/raid/data/clinic/data/pathology2/'
+pathdir = './test/'
 npypathdir = '/raid/data/clinic/data/cutpathologynpy/'
 
-patients = os.listdir(pathdir)
+patients = os.listdir('./test/')
 print(len(patients))
 
 def get_pixels_hu(slices):
@@ -54,14 +54,14 @@ def resample(image, scan, new_spacing=[1,1,1]):
  
     return image, new_spacing
 
-def plot_3d(image, threshold=-300):
+def plot_3d(image, threshold=70):
     # Position the scan upright,
     # so the head of the patient would be at the top facing the camera
 
     p = image#.transpose(2,1,0)
 
     # p = image
-    verts, faces = measure.marching_cubes_classic(p, threshold)
+    verts, faces = measure.marching_cubes_classic(p, 70)
     fig = plt.figure(figsize=(10, 10))
     ax = fig.add_subplot(111, projection='3d')
     # Fancy indexing: `verts[faces]` to generate a collection of triangles
@@ -103,8 +103,9 @@ for patient in tqdm.tqdm(patients):
     slices = [pydicom.dcmread(os.path.join(pathdir, patient, s)) for s in dcmfiles]
     slices.sort(key = lambda x : float(x.ImagePositionPatient[2]),reverse=True)
     patient_pixels = get_pixels_hu(slices)#.transpose(2,1,0)
-    patient_pixels = cutTheImage(patient_pixels)
-    pix_resampled, new_spacing = resample(patient_pixels, slices, [1, 1, 1])
+    plot_3d(patient_pixels)
+    # patient_pixels = cutTheImage(patient_pixels)
+    # pix_resampled, new_spacing = resample(patient_pixels, slices, [1, 1, 1])
 
-    np.save(npypathdir + patient, pix_resampled)
+    # np.save(npypathdir + patient, pix_resampled)
 # 
