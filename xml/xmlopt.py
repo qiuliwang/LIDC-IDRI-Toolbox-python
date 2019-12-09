@@ -13,7 +13,7 @@ except ImportError:
   import xml.etree.ElementTree as ET 
 import sys,os
 
-tree = ET.parse('071.xml') 
+tree = ET.parse('069.xml') 
 root = tree.getroot() 
 
 for child in root:
