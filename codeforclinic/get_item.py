@@ -39,7 +39,7 @@ def get_pixels_hu(pixel):
         image += np.int16(intercept)
     return np.array(image, dtype=np.int16)
 
-ds1 = pydicom.dcmread('FILE211.dcm')
+ds1 = pydicom.dcmread('000071.dcm')
 pixel1 = get_pixels_hu(ds1)
 scipy.misc.imsave('outfile1.jpg', pixel1)
 pixel2 = ds1.pixel_array
