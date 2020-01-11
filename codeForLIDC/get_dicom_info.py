@@ -96,7 +96,7 @@ for onenodule in noduleinfo:
             pix.flags.writeable = True
 
             pix = truncate_hu(pix)
-            pix = normalazation(pix)
+            # pix = normalazation(pix)
             cutpix = cutTheImage(y_loc, x_loc, pix)
 
             # scipy.misc.imsave(str(tempsign) + '.jpeg', cutpix)
