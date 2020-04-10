@@ -2,6 +2,8 @@
 Created by Wang Qiu Li
 6/27/2018
 get relationship between id and CT scans(cause LIDC also contains X-ray)
+
+PatientId_SeriesUID.csv is for dataloader. You can get series related to the patient id.
 '''
 
 import csvTools
@@ -54,7 +56,7 @@ for metadata in metadatas:
 print(len(CTList))
 print(len(Patient_Id))
 print(len(Series_UID))
-# csvTools.writeCSV('PatientId_SeriesUID.csv', CTList)
+csvTools.writeCSV('PatientId_SeriesUID.csv', CTList)
 
 patients = os.listdir(basedir)
 scan = []

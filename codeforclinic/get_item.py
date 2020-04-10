@@ -1,4 +1,12 @@
 #-*- coding: UTF-8 -*-
+'''
+Created by Wang Qiuli
+4.10.2020
+
+get Dicom items, like slicethickness, and so on. All items are listed in dicomstruct.txt
+
+get HU value
+'''
 
 import pydicom
 import cv2
@@ -9,18 +17,18 @@ import numpy as np
 
 dir = 'testdicom/'
 
-# filelist = os.listdir(dir)
-# selist = []
-# for onefile in filelist:
-#     ds = pydicom.dcmread(dir + onefile)
-#     direct = ds.dir()
-#     if 'SeriesNumber' in direct:
-#         if ds.data_element('SeriesNumber').value == 5:
-#             print(ds.data_element('SliceThickness').value)
-#         # if ds.data_element('SliceThickness').value not in selist:
-#         #     selist.append(ds.data_element('SliceThickness').value)
+filelist = os.listdir(dir)
+selist = []
+for onefile in filelist:
+    ds = pydicom.dcmread(dir + onefile)
+    direct = ds.dir()
+    print(direct)
 
-# print(selist)
+    if 'SeriesNumber' in direct:
+        if ds.data_element('SeriesNumber').value == 5:
+            print(ds.data_element('SliceThickness').value)
+
+
 def get_pixels_hu(pixel):
     image = pixel.pixel_array
     # Convert to int16 (from sometimes int16),
@@ -44,23 +52,3 @@ pixel1 = get_pixels_hu(ds1)
 scipy.misc.imsave('outfile1.jpg', pixel1)
 pixel2 = ds1.pixel_array
 scipy.misc.imsave('outfile2.jpg', pixel2)
-
-# ds2 = pydicom.dcmread('FILE318.dcm')
-# pixel2 = get_pixels_hu(ds2)
-# scipy.misc.imsave('outfile2.jpg', pixel2)
-
-
-
-# for elem in ds.dir():
-#     if elem == 'SliceThickness':
-#         contant = ds.SliceThickness
-#         print(contant)
-# print('\n\n')
-
-
-
-
-# onepic = ds.pixel_array
-# clahe = cv2.createCLAHE(clipLimit = 2.0, tileGridSize = (8,8))
-# print(type(clahe))
-# onepic = clahe.apply(onepic)

@@ -5,6 +5,8 @@ Created by WangQL
 
 operation for xml files
 get structure of xml files from LIDC
+get segmentation maps
+
 '''
 try: 
   import xml.etree.cElementTree as ET 

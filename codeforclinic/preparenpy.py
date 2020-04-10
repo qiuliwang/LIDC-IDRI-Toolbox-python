@@ -1,5 +1,15 @@
 #-*- coding: UTF-8 -*-
 
+'''
+
+Created by Wang Qiuli
+4.10.2020
+
+Sample code for preparing npy for dicom slices.
+
+
+'''
+
 import pydicom
 import cv2
 import os
@@ -20,13 +30,8 @@ print(len(patients))
 
 def get_pixels_hu(slices):
     image = np.stack([s.pixel_array for s in slices])
-    # Convert to int16 (from sometimes int16),
-    # should be possible as values should always be low enough (<32k)
     image = image.astype(np.int16)
-    # Set outside-of-scan pixels to 0
-    # The intercept is usually -1024, so air is approximately 0
     image[image == -2000] = 0
-    # Convert to Hounsfield units (HU)
     for slice_number in range(len(slices)):
         intercept = slices[slice_number].RescaleIntercept
         slope = slices[slice_number].RescaleSlope
@@ -104,8 +109,3 @@ for patient in tqdm.tqdm(patients):
     slices.sort(key = lambda x : float(x.ImagePositionPatient[2]),reverse=True)
     patient_pixels = get_pixels_hu(slices)#.transpose(2,1,0)
     plot_3d(patient_pixels)
-    # patient_pixels = cutTheImage(patient_pixels)
-    # pix_resampled, new_spacing = resample(patient_pixels, slices, [1, 1, 1])
-
-    # np.save(npypathdir + patient, pix_resampled)
-# 

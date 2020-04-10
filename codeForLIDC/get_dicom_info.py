@@ -3,6 +3,7 @@ Created by Wang Qiu Li
 7/3/2018
 
 get dicom info according to malignancy.csv and ld_scan.txt
+results are npy files for malignant / benign nodules
 '''
 
 import csvTools
@@ -86,7 +87,6 @@ for onenodule in noduleinfo:
         pix = slices[z_loc - 1].pixel_array
         cut_img = []
 
-        # add z loc
         zstart = z_loc - 1 - 5
         zend = z_loc - 1 + 5
 
@@ -94,9 +94,7 @@ for onenodule in noduleinfo:
         for zslice in slices[zstart : zend]:
             pix = zslice.pixel_array
             pix.flags.writeable = True
-
             pix = truncate_hu(pix)
-            # pix = normalazation(pix)
             cutpix = cutTheImage(y_loc, x_loc, pix)
 
             # scipy.misc.imsave(str(tempsign) + '.jpeg', cutpix)

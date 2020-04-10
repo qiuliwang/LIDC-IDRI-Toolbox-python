@@ -129,8 +129,3 @@ for scan in listscan:
 
 print(len(noudle_chara_list)) 
 csvTools.writeCSV('nodule_chara_list.csv', noudle_chara_list)
-# for caset in noudle_chara_list:
-#     print(len(caset))
-#     print(caset)    
-
-        # childname = child.tag[20:len(child.tag)]
