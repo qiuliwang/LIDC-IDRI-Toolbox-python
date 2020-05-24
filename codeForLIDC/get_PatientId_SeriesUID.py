@@ -70,7 +70,7 @@ for patient in patients:
                 scan.append(temp)
 
 print(scan[:10])
-# file_object = open('id_scan.txt', 'w')
-# file_object.writelines(scan)
-# file_object.close( )
+file_object = open('id_scan.txt', 'w')
+file_object.writelines(scan)
+file_object.close( )
 
