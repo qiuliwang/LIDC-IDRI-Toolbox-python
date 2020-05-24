@@ -5,3 +5,5 @@
 *.dcm
 *.png
 *.jpeg
+./vscode/
+./__pycache__/
