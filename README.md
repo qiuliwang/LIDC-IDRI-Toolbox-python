@@ -8,7 +8,7 @@ I am willing to make it better with your help.
 It gives out the *id_scan.txt*, which can help to to load CT files according to patient Id.
 
 #### get_scan_xml.py
-It get nodule's id and it's nine features from the xml files and gives out *nodule_chara_list.csv*.
+It gets nodule's id and it's nine features from the xml files and gives out *nodule_chara_list.csv*.
 
 #### orignize_list_nodule_chara.py
 It gives out the *malignancy.csv*, which combine the *nodule_chara_list.csv* and the *list3.2.csv*. With *malignancy.csv*, you can get all information about labeled nodules.
