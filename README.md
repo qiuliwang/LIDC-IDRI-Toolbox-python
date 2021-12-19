@@ -31,4 +31,4 @@ It screens suitable CT series for deep learning from clinic raw data.
 
 ## Upcoming
 Get nodules with multiple segmentation annotations.
-The method have been used in 'Wang, Qiuli, et al. [Uncertainty-Aware Lung Nodule Segmentation with Multiple Annotations." arXiv preprint arXiv:2110.12372 (2021)'](https://arxiv.org/abs/2110.12372).
+The method have been used in [Wang, Qiuli, et al. "Uncertainty-Aware Lung Nodule Segmentation with Multiple Annotations." arXiv preprint arXiv:2110.12372 (2021)](https://arxiv.org/abs/2110.12372).
