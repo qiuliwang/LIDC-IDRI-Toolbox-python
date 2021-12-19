@@ -23,7 +23,7 @@ It gives out the *malignancy.csv*, which combine the *nodule_chara_list.csv* and
 #### *get_dicom_info.py*
 It can get nodules' images and labels with *malignancy.csv* and *id_scan.txt*.
 
-By running this code, you can have
+By running this code, you can have nodule images and their masks (single mask)
 ![nodule images and their masks (single mask)](https://github.com/qiuliwang/LIDC-IDRI-Toolbox-python/blob/master/codeForLIDC/samples.png)
 
 #### *get_item.py*
@@ -32,6 +32,9 @@ It gets information from *dicom* files.
 #### *preparedicom.py*
 It screens suitable CT series for deep learning from clinic raw data.
 
-## Upcoming
+## CodeForMulitpleAnnotations
 Get nodules with multiple segmentation annotations.
 The method have been used in [Wang, Qiuli, et al. "Uncertainty-Aware Lung Nodule Segmentation with Multiple Annotations." arXiv preprint arXiv:2110.12372 (2021)](https://arxiv.org/abs/2110.12372).
+
+By running *get_data* in CodeForMulitpleAnnotations, you can have nodule images and their multiple annotations' intersection, union, and difference.
+![nodule images](https://github.com/qiuliwang/LIDC-IDRI-Toolbox-python/blob/master/CodeForMulitpleAnnotations/samples.png)
