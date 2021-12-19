@@ -1,8 +1,0 @@
-/testdicom/
-/testdirdicom/
-.DS_Store
-*.jpg
-*.dcm
-*.jpeg
-./vscode/
-./__pycache__/
