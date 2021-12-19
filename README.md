@@ -10,7 +10,7 @@ This project has helped the studies:
  
 [Wang, Qiuli, et al. "Class-Aware Multi-window Adversarial Lung Nodule Synthesis Conditioned on Semantic Features." International Conference on Medical Image Computing and Computer-Assisted Intervention. Springer, Cham, 2020*](https://link.springer.com/chapter/10.1007/978-3-030-59725-2_57).
 
-## Key code in codeForLIDC
+## Key code in CodeForLIDC
 #### get_PatientId_SeriesUID.py 
 It gives out the *id_scan.txt*, which can help to to load CT files according to patient Id.
 
@@ -23,7 +23,6 @@ It gives out the *malignancy.csv*, which combine the *nodule_chara_list.csv* and
 #### get_dicom_info.py
 It can get nodules' images and labels with *malignancy.csv* and *id_scan.txt*.
 
-## Key code in codeForLIDC
 #### get_item.py
 It gets information from *dicom* files.  
 
