@@ -23,6 +23,9 @@ It gives out the *malignancy.csv*, which combine the *nodule_chara_list.csv* and
 #### *get_dicom_info.py*
 It can get nodules' images and labels with *malignancy.csv* and *id_scan.txt*.
 
+By running this code, you can have
+![nodule images and their masks (single mask)](CodeForLIDC/samples.pdf)
+
 #### *get_item.py*
 It gets information from *dicom* files.  
 
