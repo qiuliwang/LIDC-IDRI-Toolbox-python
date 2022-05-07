@@ -4,12 +4,6 @@ This project is a piece of shit, but it can really help to get information from 
 I am willing to make it better with your help. 
 Code in codeForLIDC is used for LIDC-IDRI researches. Code in codeforclinic is for our clinical researches.
 
-This project has helped the studies:
-
-[Wang, Qiuli, et al. "Realistic Lung Nodule Synthesis with Multi-Target Co-Guided Adversarial Mechanism." IEEE Transactions on Medical Imaging (2021)](https://ieeexplore.ieee.org/abstract/document/9420667) 
- 
-[Wang, Qiuli, et al. "Class-Aware Multi-window Adversarial Lung Nodule Synthesis Conditioned on Semantic Features." International Conference on Medical Image Computing and Computer-Assisted Intervention. Springer, Cham, 2020*](https://link.springer.com/chapter/10.1007/978-3-030-59725-2_57).
-
 ## Key code in CodeForLIDC
 #### *get_PatientId_SeriesUID.py*
 It gives out the *id_scan.txt*, which can help to to load CT files according to patient Id.
