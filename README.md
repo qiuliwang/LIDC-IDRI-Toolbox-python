@@ -4,6 +4,8 @@ This project is a piece of shit, but it can really help to get information from 
 I am willing to make it better with your help. 
 Code in codeForLIDC is used for LIDC-IDRI researches. Code in codeforclinic is for our clinical researches.
 
+For the label information, you can refer to [Shen S , Han S X , Aberle D R , et al. An Interpretable Deep Hierarchical Semantic Convolutional Neural Network for Lung Nodule Malignancy Classification[J]. 2018.](<https://arxiv.org/abs/1806.00712>).
+
 ## Key code in CodeForLIDC
 #### *get_PatientId_SeriesUID.py*
 It gives out the *id_scan.txt*, which can help to to load CT files according to patient Id.
