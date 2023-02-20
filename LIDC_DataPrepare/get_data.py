@@ -19,8 +19,8 @@ import imageio
 
 import xmlopt
 
-basedir = '/Users/***/Data/LIDC/DOI/'
-three_dir = 'three_channel/'
+basedir = '/Users/wangql/Local/Data/LIDC/DOI/'
+# three_dir = 'three_channel/'
 imagedir = 'mid_image_hu/'
 
 noduleinfo = csvTools.readCSV('files/malignancy.csv')
@@ -138,32 +138,32 @@ tempsign = 0
 
 import tqdm
 
-for onenodule in tqdm.tqdm(noduleinfo[:10]):
+for onenodule in tqdm.tqdm(noduleinfo[:100]):
+    print(onenodule)
     xml = ''
-    # try:
-    scanid = onenodule[1]
-    scanid = caseid_to_scanid(int(scanid))
-    noduleid = onenodule[3]
-    scan_list_id = onenodule[2]
-    # if scanid != 'LIDC-IDRI-0195':
-    #     continue
+    try:
+        scanid = onenodule[1]
+        scanid = caseid_to_scanid(int(scanid))
+        noduleid = onenodule[3]
+        scan_list_id = onenodule[2]
+        # if scanid != 'LIDC-IDRI-0195':
+        #     continue
 
-    # if int(noduleid) != 2:
-    #     continue
-    scanpaths = []
-    for idscan in idscaninfo:
-        if scanid in idscan[0]:
-            scanpaths.append(idscan[0])
-#        print('len of paths: ', len(scanpaths))
+        # if int(noduleid) != 2:
+        #     continue
+        scanpaths = []
+        for idscan in idscaninfo:
+            if scanid in idscan[0]:
+                scanpaths.append(idscan[0])
 
-    noduleld_list = []
-    for i in range(10, 14):
-        if str(onenodule[i]).strip() != '':
-            noduleld_list.append(onenodule[i])
-    # print('id list: ', noduleld_list)
+        noduleld_list = []
+        for i in range(10, 14):
+            if str(onenodule[i]).strip() != '':
+                noduleld_list.append(onenodule[i])
+        print('id list: ', noduleld_list)
 
-    for scanpath in scanpaths:
-        try:    
+        for scanpath in scanpaths:
+            # try:    
             filelist1 = os.listdir(basedir + scanpath)
             filelist2 = []
 
@@ -189,9 +189,10 @@ for onenodule in tqdm.tqdm(noduleinfo[:10]):
             if (str(ds.SeriesNumber) == onenodule[2]) or (str(onenodule[2]) == str(0)):
                 slice_location = ds.ImagePositionPatient[2]
                 # print('slice location: ', slice_location)
-                print('noduleld_list: ', len(noduleld_list))
+                # print('noduleld_list: ', len(noduleld_list))
                 for one_nodule in noduleld_list:
-                    mask_image, signtemp = xmlopt.getEdgeMap(xmlfile, slice_location, one_nodule)
+                    
+                    mask_image, signtemp = xmlopt.getEdgeMap(xmlfile, slice_location, [one_nodule])
                     masks.append(mask_image)
 
                 red = red_mask(masks)
@@ -223,6 +224,6 @@ for onenodule in tqdm.tqdm(noduleinfo[:10]):
             else:
                 print(scanid)
                 print('not equal')
-        except:
-            print(scanid)           
-            print('Error')
+    except:
+        print(scanid)           
+        print('Error')
