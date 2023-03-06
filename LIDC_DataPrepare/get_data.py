@@ -22,6 +22,7 @@ import xmlopt
 basedir = '/Users/wangql/Local/Data/LIDC/DOI/'
 # three_dir = 'three_channel/'
 imagedir = 'mid_image_hu/'
+npydir = 'npy_hu/'
 
 noduleinfo = csvTools.readCSV('files/malignancy.csv')
 idscaninfo = csvTools.readCSV('files/id_scan.txt')
@@ -138,8 +139,7 @@ tempsign = 0
 
 import tqdm
 
-for onenodule in tqdm.tqdm(noduleinfo[:100]):
-    print(onenodule)
+for onenodule in tqdm.tqdm(noduleinfo):
     xml = ''
     try:
         scanid = onenodule[1]
@@ -160,70 +160,76 @@ for onenodule in tqdm.tqdm(noduleinfo[:100]):
         for i in range(10, 14):
             if str(onenodule[i]).strip() != '':
                 noduleld_list.append(onenodule[i])
-        print('id list: ', noduleld_list)
 
         for scanpath in scanpaths:
-            # try:    
-            filelist1 = os.listdir(basedir + scanpath)
-            filelist2 = []
+            # try:   
+            if len(noduleld_list) > 1:
+                # print('id list: ', noduleld_list)
 
-            xmlfiles = []
-            for onefile in filelist1:
-                if '.dcm' in onefile:
-                    filelist2.append(onefile)
-                elif '.xml' in onefile:
-                    xmlfiles.append(onefile)
+                filelist1 = os.listdir(basedir + scanpath)
+                filelist2 = []
 
-            xmlfile = basedir + scanpath + '/' + xmlfiles[0]
-            xml = xmlfile
-            slices = [pydicom.dcmread(basedir + scanpath + '/' + s) for s in filelist2]
+                xmlfiles = []
+                for onefile in filelist1:
+                    if '.dcm' in onefile:
+                        filelist2.append(onefile)
+                    elif '.xml' in onefile:
+                        xmlfiles.append(onefile)
 
-            slices.sort(key = lambda x : float(x.ImagePositionPatient[2]),reverse=True)
-            x_loc = int(onenodule[6])
-            y_loc = int(onenodule[7])
-            z_loc = int(onenodule[8])
-            ds = slices[z_loc - 1]
+                xmlfile = basedir + scanpath + '/' + xmlfiles[0]
+                xml = xmlfile
+                slices = [pydicom.dcmread(basedir + scanpath + '/' + s) for s in filelist2]
 
-            masks = []
+                slices.sort(key = lambda x : float(x.ImagePositionPatient[2]),reverse=True)
+                x_loc = int(onenodule[6])
+                y_loc = int(onenodule[7])
+                z_loc = int(onenodule[8])
+                ds = slices[z_loc - 1]
 
-            if (str(ds.SeriesNumber) == onenodule[2]) or (str(onenodule[2]) == str(0)):
-                slice_location = ds.ImagePositionPatient[2]
-                # print('slice location: ', slice_location)
-                # print('noduleld_list: ', len(noduleld_list))
-                for one_nodule in noduleld_list:
+                masks = []
+
+                if (str(ds.SeriesNumber) == onenodule[2]) or (str(onenodule[2]) == str(0)):
+                    slice_location = ds.ImagePositionPatient[2]
+                    # print('slice location: ', slice_location)
+                    # print('noduleld_list: ', len(noduleld_list))
+                    for one_nodule in noduleld_list:
+                        
+                        mask_image, signtemp = xmlopt.getEdgeMap(xmlfile, slice_location, [one_nodule])
+                        masks.append(mask_image)
+
+                    red = red_mask(masks)
+                    blue = blue_mask(masks)
+                    dif = dif_mask(masks)
+
+                    ori_hu = get_pixels_hu(ds)
+                    pix = ori_hu #getThreeChannel(ori_hu)
                     
-                    mask_image, signtemp = xmlopt.getEdgeMap(xmlfile, slice_location, [one_nodule])
-                    masks.append(mask_image)
+                    if (x_loc < 25 or x_loc > (512 - 25)) or (y_loc < 25 or y_loc > (512 - 25)):
+                        print('out of size:', scanid, noduleid)
+                    else:
+                        if np.max(red) > 0 and np.max(dif) > 0 and np.max(blue):
+                            cut_img = cutTheImage(y_loc, x_loc, pix)
+                            cut_red = cutTheImage(y_loc, x_loc, red)
+                            cut_blue = cutTheImage(y_loc, x_loc, blue)
+                            cut_dif = cutTheImage(y_loc, x_loc, dif)
 
-                red = red_mask(masks)
-                blue = blue_mask(masks)
-                dif = dif_mask(masks)
+                            imageio.imsave(imagedir + str(scanid) + '_' + str(noduleid) + '_' + str(scan_list_id) + '.png', cut_img)
+                            imageio.imsave(imagedir + str(scanid) + '_' + str(noduleid) + '_' + str(scan_list_id) + '_union.png', cut_red)
+                            imageio.imsave(imagedir + str(scanid) + '_' + str(noduleid) + '_' + str(scan_list_id) + '_intersection.png', cut_blue)
+                            imageio.imsave(imagedir + str(scanid) + '_' + str(noduleid) + '_' + str(scan_list_id) + '_dif.png', cut_dif)
 
-                ori_hu = get_pixels_hu(ds)
-                pix = ori_hu #getThreeChannel(ori_hu)
-                
-                if (x_loc < 25 or x_loc > (512 - 25)) or (y_loc < 25 or y_loc > (512 - 25)):
-                    print('out of size:', scanid, noduleid)
+                            np.save(npydir + str(scanid) + '_' + str(noduleid) + '_' + str(scan_list_id) + '.npy', cut_img)
+                            np.save(npydir + str(scanid) + '_' + str(noduleid) + '_' + str(scan_list_id) + '_union.npy', cut_red)
+                            np.save(npydir+ str(scanid) + '_' + str(noduleid) + '_' + str(scan_list_id) + '_intersection.npy', cut_blue)
+                            np.save(npydir + str(scanid) + '_' + str(noduleid) + '_' + str(scan_list_id) + '_dif.npy', cut_dif)
+
+                        # for i in range(len(masks)):
+                        #     mask_image = masks[i]                   
+                        #     cut_mask = cutTheImage(y_loc, x_loc, mask_image)
+                        #     scipy.misc.imsave(imagedir + str(scanid) + '_' + str(noduleid) + '_' + str(scan_list_id) + '_'  + str(i)+ '_mask.png', cut_mask)
                 else:
-                    if np.max(red) > 0 and np.max(dif) > 0 and np.max(blue):
-                        cut_img = cutTheImage(y_loc, x_loc, pix)
-                        cut_red = cutTheImage(y_loc, x_loc, red)
-                        cut_blue = cutTheImage(y_loc, x_loc, blue)
-                        cut_dif = cutTheImage(y_loc, x_loc, dif)
-
-                        imageio.imsave(imagedir + str(scanid) + '_' + str(noduleid) + '_' + str(scan_list_id) + '.png', cut_img)
-                        imageio.imsave(imagedir + str(scanid) + '_' + str(noduleid) + '_' + str(scan_list_id) + '_union.png', cut_red)
-                        imageio.imsave(imagedir + str(scanid) + '_' + str(noduleid) + '_' + str(scan_list_id) + '_intersection.png', cut_blue)
-                        imageio.imsave(imagedir + str(scanid) + '_' + str(noduleid) + '_' + str(scan_list_id) + '_dif.png', cut_dif)
-                        # np.save(imagedir + str(scanid) + '_' + str(noduleid) + '_' + str(scan_list_id), cut_img)
-
-                    # for i in range(len(masks)):
-                    #     mask_image = masks[i]                   
-                    #     cut_mask = cutTheImage(y_loc, x_loc, mask_image)
-                    #     scipy.misc.imsave(imagedir + str(scanid) + '_' + str(noduleid) + '_' + str(scan_list_id) + '_'  + str(i)+ '_mask.png', cut_mask)
-            else:
-                print(scanid)
-                print('not equal')
+                    print(scanid)
+                    print('not equal')
     except:
         print(scanid)           
         print('Error')
