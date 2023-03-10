@@ -34,3 +34,5 @@ The method have been used in [Wang, Qiuli, et al. "Uncertainty-Aware Lung Nodule
 
 By running *get_data* in CodeForMulitpleAnnotations, you can have nodule images and their multiple annotations' intersection, union, and difference.
 ![nodule images](https://github.com/qiuliwang/LIDC-IDRI-Toolbox-python/blob/master/CodeForMulitpleAnnotations/samples.png)
+
+Feel free to contact me (qiuli.wang0102@foxmail.com) if you have any problems.
