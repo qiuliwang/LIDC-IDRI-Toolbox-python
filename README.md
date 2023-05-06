@@ -30,9 +30,31 @@ It screens suitable CT series for deep learning from clinic raw data.
 
 ## CodeForMulitpleAnnotations
 Get nodules with multiple segmentation annotations.
-The method have been used in [Wang, Qiuli, et al. "Uncertainty-Aware Lung Nodule Segmentation with Multiple Annotations." arXiv preprint arXiv:2110.12372 (2021)](https://arxiv.org/abs/2110.12372).
+The method has been used in [Wang, Qiuli, et al. "Uncertainty-Aware Lung Nodule Segmentation with Multiple Annotations." arXiv preprint arXiv:2110.12372 (2021)](https://arxiv.org/abs/2110.12372).
 
 By running *get_data* in CodeForMulitpleAnnotations, you can have nodule images and their multiple annotations' intersection, union, and difference.
 ![nodule images](https://github.com/qiuliwang/LIDC-IDRI-Toolbox-python/blob/master/CodeForMulitpleAnnotations/samples.png)
+
+If you find it helpful to your research, please cite as follows:
+```
+@inproceedings
+{yang2022uncertainty,
+ title={Uncertainty-Guided Lung Nodule Segmentation with Feature-Aware Attention},
+ author={Yang, Han and Shen, Lu and Zhang, Mengke and Wang, Qiuli},
+ booktitle={Medical Image Computing and Computer Assisted Intervention--MICCAI 2022: 25th International Conference, Singapore, September 18--22, 2022,    Proceedings, Part V},
+ pages={44--54},
+ year={2022},
+ organization={Springer}
+}
+
+@inproceedings{wang2020class,
+  title={Class-aware multi-window adversarial lung nodule synthesis conditioned on semantic features},
+  author={Wang, Qiuli and Zhang, Xingpeng and Chen, Wei and Wang, Kun and Zhang, Xiaohong},
+  booktitle={Medical Image Computing and Computer Assisted Intervention--MICCAI 2020: 23rd International Conference, Lima, Peru, October 4--8, 2020, Proceedings, Part VI 23},
+  pages={589--598},
+  year={2020},
+  organization={Springer}
+}
+```
 
 Feel free to contact me (qiuli.wang0102@foxmail.com) if you have any problems.
