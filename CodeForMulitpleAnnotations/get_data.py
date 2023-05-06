@@ -211,6 +211,15 @@ for onenodule in tqdm.tqdm(noduleinfo):
                         imageio.imsave(imagedir + str(scanid) + '_' + str(noduleid) + '_' + str(scan_list_id) + '_blue.png', cut_blue)
                         imageio.imsave(imagedir + str(scanid) + '_' + str(noduleid) + '_' + str(scan_list_id) + '_dif.png', cut_dif)
                         np.save(imagedir + str(scanid) + '_' + str(noduleid) + '_' + str(scan_list_id), cut_img)
+
+                '''
+                If you need all annotations:
+                '''
+                # for i in range(len(masks)):
+                #     mask_image = masks[i]                   
+                #     cut_mask = cutTheImage(y_loc, x_loc, mask_image)
+                #     imageio.imsave(imagedir + str(scanid) + '_' + str(noduleid) + '_' + str(scan_list_id) + '_'  + str(i)+ '_mask.png', cut_mask)
+                
             else:
                 print(scanid)
                 print('not equal')
