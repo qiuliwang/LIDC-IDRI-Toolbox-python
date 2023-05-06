@@ -2,8 +2,8 @@
 Personal toolbox for lidc-idri dataset / lung cancer / nodule  
 This project is a piece of shit, but it can really help to get information from LIDC-IDRI.  
 I am willing to make it better with your help. 
-Code in codeForLIDC is used for LIDC-IDRI researches. Code in codeforclinic is for our clinical researches.
 
+Code in codeForLIDC is used for LIDC-IDRI researches. 
 For the label information, you can refer to [Shen S , Han S X , Aberle D R , et al. An Interpretable Deep Hierarchical Semantic Convolutional Neural Network for Lung Nodule Malignancy Classification[J]. 2018.](<https://arxiv.org/abs/1806.00712>).
 
 ## Key code in CodeForLIDC
