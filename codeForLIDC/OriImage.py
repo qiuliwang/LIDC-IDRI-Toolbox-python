@@ -16,7 +16,7 @@ import glob
 
 import xmlopt
 
-basedir = '/home/wangqiuli/Data/LIDC/DOI/'
+basedir = '/Data/LIDC/DOI/'
 resdir = 'noduleimage/'
 imagedir = 'ori_images/'
 maskdir = 'ori_masks/'

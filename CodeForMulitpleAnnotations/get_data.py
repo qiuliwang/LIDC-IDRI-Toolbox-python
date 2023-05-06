@@ -16,7 +16,7 @@ import glob
 
 import xmlopt
 
-basedir = '/Users/wangql/Local/Data/LIDC/DOI/'
+basedir = '/Data/LIDC/DOI/'
 three_dir = 'three_channel/'
 imagedir = 'mid_image_hu/'
 

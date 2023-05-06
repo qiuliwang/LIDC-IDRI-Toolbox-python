@@ -20,6 +20,7 @@ It gives out the *malignancy.csv*, which combine the *nodule_chara_list.csv* and
 It can get nodules' images and labels with *malignancy.csv* and *id_scan.txt*.
 
 By running this code, you can have nodule images and their masks (single mask)
+
 ![nodule images and their masks (single mask)](https://github.com/qiuliwang/LIDC-IDRI-Toolbox-python/blob/master/codeForLIDC/samples.png)
 
 #### *get_item.py*
@@ -37,6 +38,7 @@ It can extract label edges from xml files.
 
 #### *get_data.py*
 By running *python get_data.py* in CodeForMulitpleAnnotations, you can have nodule images and their multiple annotations' intersection, union, and difference.
+
 ![nodule images](https://github.com/qiuliwang/LIDC-IDRI-Toolbox-python/blob/master/CodeForMulitpleAnnotations/samples.png)
 
 If you find it helpful to your research, please cite as follows:
