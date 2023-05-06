@@ -32,7 +32,11 @@ It screens suitable CT series for deep learning from clinic raw data.
 Get nodules with multiple segmentation annotations.
 The method has been used in [Wang, Qiuli, et al. "Uncertainty-Aware Lung Nodule Segmentation with Multiple Annotations." arXiv preprint arXiv:2110.12372 (2021)](https://arxiv.org/abs/2110.12372).
 
-By running *get_data* in CodeForMulitpleAnnotations, you can have nodule images and their multiple annotations' intersection, union, and difference.
+#### *xmlopt.py*
+It can extract label edges from xml files.
+
+#### *get_data.py*
+By running *python get_data.py* in CodeForMulitpleAnnotations, you can have nodule images and their multiple annotations' intersection, union, and difference.
 ![nodule images](https://github.com/qiuliwang/LIDC-IDRI-Toolbox-python/blob/master/CodeForMulitpleAnnotations/samples.png)
 
 If you find it helpful to your research, please cite as follows:
