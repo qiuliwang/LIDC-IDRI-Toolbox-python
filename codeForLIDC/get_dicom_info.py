@@ -24,8 +24,9 @@ print('normal')
 
 # LUNA2016 data prepare ,first step: truncate HU to -1000 to 400
 def truncate_hu(image_array):
-    image_array[image_array > 400] = 0
-    image_array[image_array <-1000] = 0
+    # image_array[image_array > 400] = 0
+    # image_array[image_array <-1000] = 0
+    
     return image_array
     
 # LUNA2016 data prepare ,second step: normalzation the HU
@@ -40,7 +41,7 @@ def normalazation(image_array):
 
 
 def cutTheImage(x, y, pix):
-    temp = 15
+    temp = 25
     x1 = x - temp
     x2 = x + temp
     y1 = y - temp

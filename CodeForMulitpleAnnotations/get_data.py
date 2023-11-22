@@ -16,7 +16,7 @@ import glob
 
 import xmlopt
 
-basedir = '/Data/LIDC/DOI/'
+basedir = '/Users/wangql/Local/Data/LIDC/DOI/'
 three_dir = 'three_channel/'
 imagedir = 'mid_image_hu/'
 
@@ -186,10 +186,11 @@ for onenodule in tqdm.tqdm(noduleinfo):
                 slice_location = ds.ImagePositionPatient[2]
                 # print('slice location: ', slice_location)
                 print('noduleld_list: ', len(noduleld_list))
-                for one_nodule in noduleld_list:
-                    mask_image, signtemp = xmlopt.getEdgeMap(xmlfile, slice_location, one_nodule)
-                    masks.append(mask_image)
 
+                for one_nodule in noduleld_list:
+                    mask_image, signtemp = xmlopt.getEdgeMap(xmlfile, slice_location, [one_nodule])
+                    masks.append(mask_image)
+                
                 red = red_mask(masks)
                 blue = blue_mask(masks)
                 dif = dif_mask(masks)
@@ -215,10 +216,11 @@ for onenodule in tqdm.tqdm(noduleinfo):
                 '''
                 If you need all annotations:
                 '''
-                # for i in range(len(masks)):
-                #     mask_image = masks[i]                   
-                #     cut_mask = cutTheImage(y_loc, x_loc, mask_image)
-                #     imageio.imsave(imagedir + str(scanid) + '_' + str(noduleid) + '_' + str(scan_list_id) + '_'  + str(i)+ '_mask.png', cut_mask)
+                for i in range(len(masks)):
+                    if i == 1:
+                        mask_image = masks[i]                   
+                        cut_mask = cutTheImage(y_loc, x_loc, mask_image)
+                        imageio.imsave(imagedir + str(scanid) + '_' + str(noduleid) + '_' + str(scan_list_id) + '_'  + str(i)+ '_second_mask.png', cut_mask)
                 
             else:
                 print(scanid)

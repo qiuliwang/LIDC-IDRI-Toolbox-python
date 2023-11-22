@@ -31,7 +31,7 @@ It screens suitable CT series for deep learning from clinic raw data.
 
 ## CodeForMulitpleAnnotations
 Get nodules with multiple segmentation annotations.
-The method has been used in [Wang, Qiuli, et al. "Uncertainty-Aware Lung Nodule Segmentation with Multiple Annotations." arXiv preprint arXiv:2110.12372 (2021)](https://arxiv.org/abs/2110.12372).
+The method has been used in [Wang, Qiuli, et al. "Uncertainty-Aware Lung Nodule Segmentation with Multiple Annotations." arXiv preprint arXiv:2110.12372 (2021)](https://arxiv.org/abs/2110.12372). You can get the processed data here: https://pan.baidu.com/s/1nQLaS_NEaiBeGOeHxHV1dg, Code: 4f38
 
 #### *xmlopt.py*
 It can extract label edges from xml files.

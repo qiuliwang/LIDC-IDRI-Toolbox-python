@@ -27,6 +27,7 @@ def getEdgeMap(file, zloc, nodule_list):
   Img=np.zeros((512,512))
 
   for onenoduleid in nodule_list:
+    # print('onenoduleid: ', onenoduleid)
     rangelist, Img = getEdgeMap_id(root, onenoduleid, zloc)
     if rangelist != None:
       break
