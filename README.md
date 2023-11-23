@@ -25,7 +25,7 @@ If you only want to get the data, you can run the code:
 noduleinfo = csvTools.readCSV('files/malignancy.csv')
 idscaninfo = csvTools.readCSV('files/id_scan.txt')
 ```
-I save the relationships between case id and dicom path in the 'malignancy.csv', and 'id_scan.txt', which can be found in 'LIDC-IDRI-Toolbox-python/codeForLIDC/files/'.
+Then use pydicom to process the DICOM files. I save the relationships between case id and dicom path in the 'malignancy.csv', and 'id_scan.txt', which can be found in 'LIDC-IDRI-Toolbox-python/codeForLIDC/files/'.
 
 ![nodule images and their masks (single mask)](https://github.com/qiuliwang/LIDC-IDRI-Toolbox-python/blob/master/codeForLIDC/samples.png)
 
