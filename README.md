@@ -1,6 +1,6 @@
 # LIDC-IDRI-Nodule Analysis Code
 Personal toolbox for lidc-idri dataset / lung cancer / nodule  
-This project is a piece of shit, but it can really help to get information from LIDC-IDRI.  
+This project is a personal toolbox, but it can really help to get information from LIDC-IDRI.  
 I am willing to make it better with your help. 
 
 Code in codeForLIDC is used for LIDC-IDRI researches. 
@@ -18,8 +18,14 @@ It gives out the *malignancy.csv*, which combine the *nodule_chara_list.csv* and
 
 #### *get_dicom_info.py*
 It can get nodules' images and labels with *malignancy.csv* and *id_scan.txt*.
+By running this code, you can have nodule images and their masks (single mask).
 
-By running this code, you can have nodule images and their masks (single mask)
+If you only want to get the data, you can run the code:
+ ```
+noduleinfo = csvTools.readCSV('files/malignancy.csv')
+idscaninfo = csvTools.readCSV('files/id_scan.txt')
+```
+I save the relationships between case id and dicom path in the 'malignancy.csv', and 'id_scan.txt', which can be found in 'LIDC-IDRI-Toolbox-python/codeForLIDC/files/'.
 
 ![nodule images and their masks (single mask)](https://github.com/qiuliwang/LIDC-IDRI-Toolbox-python/blob/master/codeForLIDC/samples.png)
 
