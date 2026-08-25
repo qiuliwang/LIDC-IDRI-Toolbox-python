@@ -1,11 +1,21 @@
+# ---- 数据/输出（大文件不入库）----
+*.dcm
+*.npy
+*.jpg
+*.jpeg
+*.png
 /testdicom/
 /testdirdicom/
+
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+
+# ---- 编辑器/环境 ----
+.vscode/
+.idea/
 .DS_Store
-*.jpg
-*.dcm
-*.jpeg
-./vscode/
-./__pycache__/
-.gitignore
-*.png
-*.npy
+venv/

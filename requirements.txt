@@ -1,0 +1,14 @@
+# LIDC-IDRI-Toolbox-python 依赖
+# 代码基于 2018 年老 API（scipy.misc / pydicom 1.x），
+# 建议在 Python 3.7 / 3.8 虚拟环境中安装（scipy>=1.3 移除了 scipy.misc.imresize 等函数）
+numpy>=1.16,<1.24
+scipy>=1.2,<1.3
+pandas>=0.24,<1.2
+pydicom>=1.4,<2.0
+opencv-python>=4.1,<4.6
+imageio>=2.5,<2.10
+Pillow>=7.0,<9.0
+matplotlib>=3.0,<3.5
+tqdm>=4.30
+scikit-learn>=0.22,<1.0
+xlrd>=1.2,<2.0
